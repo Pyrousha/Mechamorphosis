@@ -17,12 +17,15 @@
   </sounds>
   <sprites name="sprites">
     <sprites name="Hero">
+      <sprite>sprites\spr_hero_run</sprite>
+      <sprite>sprites\spr_hero_stand</sprite>
+      <sprite>sprites\spr_hero_jump</sprite>
       <sprite>sprites\spr_hero_16</sprite>
       <sprite>sprites\spr_hero_32</sprite>
       <sprite>sprites\spr_hero_hitbox</sprite>
-      <sprite>sprites\spr_hero_stand</sprite>
-      <sprite>sprites\spr_hero_run</sprite>
-      <sprite>sprites\spr_hero_jump</sprite>
+      <sprite>sprites\spr_hero_standold</sprite>
+      <sprite>sprites\spr_hero_runold</sprite>
+      <sprite>sprites\spr_hero_jumpold</sprite>
       <sprite>sprites\spr_hero_attack</sprite>
       <sprite>sprites\spr_hero_attack_old</sprite>
     </sprites>
