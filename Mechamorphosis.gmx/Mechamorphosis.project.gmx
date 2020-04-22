@@ -120,6 +120,7 @@
       <object>objects\obj_deadText</object>
     </objects>
     <object>objects\obj_heart_pickup</object>
+    <object>objects\obj_speedrunTimer</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_boot</room>
