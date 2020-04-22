@@ -114,8 +114,6 @@ view_yspeed = 32;
 intro = true;
 hSpd = 10;
 vSpd = 10;
-
-
 </string>
           </argument>
         </arguments>
@@ -186,24 +184,74 @@ spriteObj.image_alpha = 1;
             <kind>1</kind>
             <string>///room + view stuff
 roomMoving = "false";
-longRoom = "false";
-if ((x &lt; 5824)&amp;&amp;(y&lt;1920)) || ((x&lt;7488)&amp;&amp;(y&gt;1920)&amp;&amp;(x&gt;4160))|| ((y&gt;1920)&amp;&amp;(respawning = "true")) 
+shiftRoom = true;
+/*if ((x &lt; 5824)&amp;&amp;(y&lt;1920)) || ((x&lt;7488)&amp;&amp;(y&gt;1920)&amp;&amp;(x&gt;4160))|| ((y&gt;1920)&amp;&amp;(respawning = "true")) //Sliding room
 {
     view_object[0] = self;
-    longRoom = "true";
+    shiftRoom = false;
     view_x = view_xview;
     view_y = view_yview;
     view_x1 = view_x;
     view_y1 = view_y;
-}
+}*/
 
-if ( ((x&lt; 8320)&amp;&amp;(y&gt;832)&amp;&amp;(y&lt;1920)) || (y &gt; 2752) || ((y&gt;1920)&amp;&amp;(respawning = "true")) )
+if (y &lt; 960)
 {
-    view_object[0] = noone;
-    longRoom = "true";
+    if (x &lt; 5824) //intro long room
+    {
+        view_object[0] = self;
+        shiftRoom = false;
+        view_x = view_xview;
+        view_y = view_yview;
+        view_x1 = view_x;
+        view_y1 = view_y;
+    }
+}
+else
+{
+    if (y &gt; 1920) &amp;&amp; (y &lt; 2880) 
+    {
+        if (x &gt; 4160) &amp;&amp; (x &lt; 7488) //second long room
+        {
+            view_object[0] = self;
+            shiftRoom = false;
+            view_x = view_xview;
+            view_y = view_yview;
+            view_x1 = view_x;
+            view_y1 = view_y;
+        }
+    }
+}   
+
+if (y &gt; 832) &amp;&amp; (y&lt;1920) 
+{
+    if ((x &gt; 6656)&amp;&amp;(x &lt; 8320)) //first pit room
+    {
+        view_object[0] = noone;
+        shiftRoom = false;
+    }
+}
+else
+{
+    if (y &gt; 2752) &amp;&amp; (y &lt; 3840)
+    {
+        if ((x &gt; 3328) &amp;&amp; (x &lt; 8320)) || ((x &gt; 9984) &amp;&amp; (x &lt; 13312)) //Second and fourth pit rooms
+        {
+            view_object[0] = noone;
+            shiftRoom = false;
+        }
+    }
+    else
+    {
+        if (y &gt; 4672) //3rd pit room
+        {
+            view_object[0] = noone;
+            shiftRoom = false;
+        }
+    }
 }
 
-if (longRoom = "false")
+if (shiftRoom)
 {
 view_object[0] = noone;
 
@@ -221,7 +269,7 @@ if (y+sprite_height/2 &gt; view_y + view_hview) //Down
 {
     view_y += view_hview;
 }
-if (y+sprite_height/2 &lt; view_y) //Up
+if (y+sprite_height/2 &lt; view_y+64) //Up
 {
     view_y -= view_hview;
 }
@@ -241,6 +289,7 @@ if (view_y1 &lt; view_y)
 if (view_y1 &gt; view_y)
 {
     view_y1 = max(view_y,view_y1 - view_yspeed);
+    obj_hero.vSpd = 25;
 }
 
 if (view_xview != view_x1)
@@ -445,6 +494,10 @@ if  (((boostState == "recharge")||(boostState = "charged")) || ((onGround = "tru
             if ((inst2 != noone) &amp;&amp; (vSpd &gt;0))
             {
                 inst2 = noone;      
+                if (boostState == "recharge")
+                {
+                    boostState = "charged";
+                }
             }
             inst =  collision_rectangle(hbL,hbB+1,hbR,hbB+1,obj_wall,false,true)
             if ((inst == noone)&amp;&amp;(inst2 == noone)) //not on ground
@@ -658,6 +711,10 @@ else //Down
         {
             vSpd = (hbB+1) - inst.y;
             jumpState = "ground";
+            if (boostState == "recharge")
+            {
+                boostState = "charged";
+            }
         }
     }
 }
@@ -821,7 +878,7 @@ obj_hero_sprite.visible = false;
             <kind>1</kind>
             <string>if (debug_mode)
 {
-    obj_hero.hp -= 0.5;
+    obj_hero.hp += 0.5;
 }
 </string>
           </argument>

@@ -27,6 +27,7 @@
       <sprite>sprites\spr_hero_runold</sprite>
       <sprite>sprites\spr_hero_jumpold</sprite>
       <sprite>sprites\spr_hero_attack</sprite>
+      <sprite>sprites\spr_hero_attack_old</sprite>
     </sprites>
     <sprite>sprites\spr_heart</sprite>
     <sprite>sprites\spr_heart_pickup</sprite>
@@ -60,7 +61,9 @@
     <sprite>sprites\spr_wasd_indicator</sprite>
     <sprite>sprites\spr_platform</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bg_tiles</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\calculateDirection.gml</script>
