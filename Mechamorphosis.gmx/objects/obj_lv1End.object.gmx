@@ -28,6 +28,15 @@
             <string>timer = 0;
 timerMax = 20;
 image_alpha = 0;
+bgTileX = 832;
+bgTileY = 960;
+for (i = 0; i &lt; (room_width); i+= bgTileX)
+{
+    for (j = 0; j &lt; (room_width); j+= bgTileY)
+    {
+        instance_create(i,j,obj_bgTile);
+    }
+}
 </string>
           </argument>
         </arguments>
