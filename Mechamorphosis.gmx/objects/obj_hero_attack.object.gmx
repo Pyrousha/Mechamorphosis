@@ -26,11 +26,12 @@
           <argument>
             <kind>1</kind>
             <string>audio_play_sound(snd_attack,5,false);
-travelTimer = 15;
-dist=16;
+travelTimer = 8;
+dist = 10;
 distMod = 4;
 
 damage = obj_hero.damage;
+sprite_index = obj_hero.spriteObj.attackSprite;
 
 image_speed = 0;
 imgSpd = 1;

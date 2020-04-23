@@ -27,6 +27,13 @@
             <kind>1</kind>
             <string>obj_hero.hasBoost = "true";
 obj_sign2.active = true;
+with (obj_hero.spriteObj)
+{
+    idleSprite = spr_hero_stand_mech;
+    runSprite = spr_hero_run_mech;
+    jumpSprite = spr_hero_jump_mech;
+    attackSprite = spr_hero_attack_mech;
+}
 instance_destroy();
 </string>
           </argument>
