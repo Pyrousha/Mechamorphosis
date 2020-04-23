@@ -52,7 +52,10 @@ audio_sound_gain(global.introSong,global.musicVolume,1);
             <kind>1</kind>
             <string>if debug_mode
 {
-    draw_text(view_xview+80, view_yview+80, "FPS: " + string(fps));
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
+    draw_set_font(fnt_12x10);
+    draw_text(view_xview+32, view_yview+32, "FPS: " + string(fps));
 }
 if (room == rm_menu)
 {
