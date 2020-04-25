@@ -1,7 +1,7 @@
 ///eDamage(enemy, dmg)
 enemy = argument0;
 enemy.hp -= argument1;
-if (enemy.hp <= 0)
+if (enemy.hp <= 0) && (enemy.dead ==false)
 {
     audio_play_sound(snd_enemyDeath,5,false);
     randomize();
@@ -13,8 +13,9 @@ if (enemy.hp <= 0)
     {
         instance_create(enemy.x,enemy.y,ds_list_find_value(enemy.lootList, lootIndex));
     }
-    instance_destroy(enemy.spriteObj);
-    instance_destroy(enemy);
+    enemy.visible = false;
+    enemy.spriteObj.visible = false;
+    enemy.dead = true;
 }
 else
 {

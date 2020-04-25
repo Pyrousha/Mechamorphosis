@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>key = global.key_up;
+            <string>key = global.key_jump;
 </string>
           </argument>
         </arguments>
@@ -51,7 +51,7 @@
             <string>if (!instance_exists(obj_keyController))
 {
     var a = instance_create(0, 0, obj_keyController);
-    a.input = "up";
+    a.input = "jump";
 }
 </string>
           </argument>

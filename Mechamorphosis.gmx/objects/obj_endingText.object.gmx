@@ -33,7 +33,7 @@ ds_list_add(textList,"BUT YOU ARE GREETED#BY A TERRIBLE SIGHT...");
 ds_list_add(textList,"WERE YOU TOO LATE?");
 ds_list_add(textList,"TO BE CONTINUED...#(END OF DEMO)");
 ds_list_add(textList,"THANK YOU FOR PLAYING!");
-ds_list_add(textList,"MECHAMORPHOSIS DEMO#BY TRAVIS BIRD");
+ds_list_add(textList,"MECHAMORPHOSIS DEMO");
 i=0;
 
 text = (ds_list_find_value(textList,i))

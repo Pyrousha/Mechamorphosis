@@ -69,6 +69,9 @@ hpMax = 5;
 hp = hpMax;
 damage = 0.5
 invincible = false;
+startX = 192-32;
+startY = 704;
+dead = false;
 
 //Boost
 hasBoost = "false";
@@ -85,13 +88,17 @@ boostTimer = boostDuration;
 boostCooldownTimer = rechargeTime;
 
 //Placeholder Controls
-global.key_jump = vk_space;
-global.key_attack = ord('J');
-global.key_boost = ord('K');
-global.key_up = ord('W');
-global.key_left = ord('A');
-global.key_down = ord('S');
-global.key_right = ord('D');
+if (!file_exists("config.ini"))
+{
+    show_debug_message("ERROR READING CONFIG FILE, SWAPPING TO DEFAULT CONTROLS");
+    global.key_jump = vk_space;
+    global.key_attack = ord('J');
+    global.key_boost = ord('K');
+    global.key_up = ord('W');
+    global.key_left = ord('A');
+    global.key_down = ord('S');
+    global.key_right = ord('D');
+}
 
 //Sprite
 spriteObj = instance_create(x,y,obj_hero_sprite);
@@ -114,6 +121,12 @@ view_yspeed = 32;
 intro = true;
 hSpd = 10;
 vSpd = 10;
+
+//Dev hacks
+if (debug_mode)
+{
+    instance_create(832,704,obj_boostPowerUp);
+}
 </string>
           </argument>
         </arguments>
@@ -161,7 +174,7 @@ spriteObj.image_alpha = 1;
           <argument>
             <kind>1</kind>
             <string>///Debug messages
-show_debug_message("vSpd: " + string(vSpd));
+show_debug_message("start X,Y " + string(startX)+ ", "+string(startY));
 </string>
           </argument>
         </arguments>
@@ -216,10 +229,17 @@ else
     {
         if (y &gt; 3840) &amp;&amp; (y &lt; 4800)
         {
-            if (x &gt; 832)&amp;&amp;(x &lt; 7488)
+            if (x &gt; -832)&amp;&amp;(x &lt; 7488)
             {
-                view_object[0] = self;
                 shiftRoom = false;
+                if (x &lt; 832)
+                {
+                    view_xview = x - view_wview/2
+                }
+                else
+                {
+                    view_object[0] = self;
+                }
                 view_x = view_xview;
                 view_y = view_yview;
                 view_x1 = view_x;
@@ -341,6 +361,10 @@ else
 {
     spriteObj.image_speed = image_speed;
 }
+
+//Dead
+if (!dead)
+{
 
 //Respawn
 if (respawning = "true")
@@ -672,11 +696,17 @@ if (((boostState == "recharge")||(boostState = "charged"))&amp;&amp;(intro == fa
     }
 }
 
+
+} 
+else //if dead
+{
+    
+}
+
 round(x);
 round(y);
 round(hSpd);
 round(vSpd);
-
 
 //Horizontal Collision
 //Left
