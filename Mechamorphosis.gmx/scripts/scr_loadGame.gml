@@ -1,7 +1,6 @@
 ///loadGame()
 if (!file_exists("config.ini"))
 {
-    show_debug_message("ERROR READING CONFIG FILE, SWAPPING TO DEFAULT CONTROLS");
     global.key_jump = vk_space;
     global.key_attack = ord('J');
     global.key_boost = ord('K');
@@ -9,15 +8,25 @@ if (!file_exists("config.ini"))
     global.key_left = ord('A');
     global.key_down = ord('S');
     global.key_right = ord('D');
+    global.bestTime = 18000;
     
     ini_open("config.ini");
-    ini_write_real("controls","up",global.key_up);
-    ini_write_real("controls","down",global.key_down);
-    ini_write_real("controls","left",global.key_left);
-    ini_write_real("controls","right",global.key_right);
-    ini_write_real("controls","jump",global.key_jump);
-    ini_write_real("controls","attack",global.key_attack);
+    
+    //Speedrun
+    ini_write_real("speedrun","frames",0);
+    ini_write_real("speedrun","seconds",0);
+    ini_write_real("speedrun","mins",5);
+    ini_write_real("speedrun","bestTime",global.bestTime);
+    
+    //Controls
     ini_write_real("controls","boost",global.key_boost);
+    ini_write_real("controls","attack",global.key_attack);
+    ini_write_real("controls","jump",global.key_jump);
+    ini_write_real("controls","right",global.key_right);
+    ini_write_real("controls","left",global.key_left);
+    ini_write_real("controls","down",global.key_down);
+    ini_write_real("controls","up",global.key_up);
+    
     ini_close();
 }
 else
@@ -30,6 +39,12 @@ else
     global.key_jump = ini_read_real("controls","jump",vk_space);
     global.key_attack = ini_read_real("controls","attack",ord('J'));
     global.key_boost = ini_read_real("controls","boost",ord('K'));
+    
+    global.bestTime = ini_read_real("speedrun","bestTime",18000);
+    global.mins = ini_read_real("speedrun","mins",18000);
+    global.seconds = ini_read_real("speedrun","seconds",0);
+    global.frames = ini_read_real("speedrun","frames",0);
+    
     ini_close();
 }
 

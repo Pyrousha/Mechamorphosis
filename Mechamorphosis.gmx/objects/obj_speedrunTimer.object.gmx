@@ -52,7 +52,30 @@ frames = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room == rm_lv1)
+            <string>if (room == rm_menu)
+{
+    m = global.mins;
+    mstr = string(m);
+    if (m &lt; 10)
+    {
+        mstr = "0"+string(m);
+    }
+    s = global.seconds;
+    sstr = string(s);
+    if (s &lt; 10)
+    {
+        sstr = "0"+string(s);
+    }
+    f = global.frames;
+    fstr = string(f);
+    if (f &lt; 10)
+    {
+        fstr = "0"+string(f);
+    }
+    obj_persist.text = ("Best Time: " + mstr + ":"+ sstr+":"+fstr);
+    obj_persist.alarm[0] = 360;
+}
+if (room == rm_lv1)
 {
     counting = true;
     mins = 0;
@@ -63,8 +86,18 @@ if (room == rm_ending)
 {
     counting = false;
     var file;
-    file = file_text_open_write(working_directory + "\speedrunTimer.txt");
-    file_text_write_string(file, 360*mins+60*seconds+frames);
+    time = 360*mins+60*seconds+frames;
+    if (time &lt; global.bestTime)
+    {
+        obj_persist.text = "New best time!";
+        obj_persist.alarm[0] = 120;
+        
+        global.bestTime = time;
+        global.mins = mins;
+        global.seconds = seconds;
+        global.frames = frames;
+        scr_saveGame();
+    }
 }
 </string>
           </argument>

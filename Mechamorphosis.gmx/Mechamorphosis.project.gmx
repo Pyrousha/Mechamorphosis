@@ -175,6 +175,7 @@
       <room>rooms\rm_controls</room>
     </rooms>
     <room>rooms\rm_intro</room>
+    <room>rooms\room8</room>
     <room>rooms\rm_lv1</room>
     <room>rooms\rm_dead</room>
     <room>rooms\rm_ending</room>
