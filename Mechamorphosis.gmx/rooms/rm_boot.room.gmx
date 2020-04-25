@@ -10,17 +10,7 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>0</showcolour>
-  <code>ini_open("settings.ini")
-global.key_up = ini_read_real("controls","up",keyboard_get_map("W"));
-global.key_left = ini_read_real("controls","left",keyboard_get_map("A"));
-global.key_down = ini_read_real("controls","down",keyboard_get_map("S"));
-global.key_right = ini_read_real("controls","right",keyboard_get_map("D"));
-global.key_jump = ini_read_real("controls","jump",vk_space);
-global.key_attack = ini_read_real("controls","right",keyboard_get_map("J"));
-global.tileSize = 20;
-ini_close();
-
-
+  <code>scr_loadGame();
 
 //sound_global_volume(0.5);
 global.musicVolume = 0.3;

@@ -34,13 +34,12 @@
         global.key_left = obj_key_left.key;
         global.key_down = obj_key_down.key;
         global.key_right = obj_key_right.key;
+        global.key_jump = obj_key_jump.key;
+        global.key_attack = obj_key_attack.key;
+        global.key_boost = obj_key_boost.key;
         
-        ini_write_real("controls", "up", global.key_up);
-        ini_write_real("controls", "left", global.key_left);
-        ini_write_real("controls", "down", global.key_down);
-        ini_write_real("controls", "right", global.key_right);
-        ini_close();
-        room_goto(rm_options);
+        scr_saveGame();
+        room_goto(rm_menu);
     }
 }
 </string>

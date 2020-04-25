@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>key = global.key_up;
+            <string>key = global.key_attack;
 </string>
           </argument>
         </arguments>
@@ -51,7 +51,7 @@
             <string>if (!instance_exists(obj_keyController))
 {
     var a = instance_create(0, 0, obj_keyController);
-    a.input = "up";
+    a.input = "attack";
 }
 </string>
           </argument>
@@ -80,7 +80,7 @@ draw_set_font(fnt_1);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
-if (hover == false)
+if (hover != true)
 {
     draw_set_colour(c_black);
 }

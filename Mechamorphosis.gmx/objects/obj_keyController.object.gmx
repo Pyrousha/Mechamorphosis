@@ -32,20 +32,46 @@ if (newKey != vk_escape)
     switch (input)
     {
         case "up":
+        {
             obj_key_up.key = newKey;
             break;
+        }
 
         case "left":
+        {
             obj_key_left.key = newKey;
             break;
+        }
 
         case "down":
+        {
             obj_key_down.key = newKey;
             break;
+        }
 
         case "right":
+        {
             obj_key_right.key = newKey;
             break;
+        }
+        
+        case "jump":
+        {
+            obj_key_jump.key = newKey;
+            break;
+        }
+        
+        case "attack":
+        {
+            obj_key_attack.key = newKey;
+            break;
+        }
+        
+        case "boost":
+        {
+            obj_key_boost.key = newKey;
+            break;
+        }
 
         default:
         {}

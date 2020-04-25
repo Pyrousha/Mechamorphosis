@@ -55,6 +55,8 @@
         <sprite>sprites\spr_wall</sprite>
         <sprite>sprites\spr_lantern</sprite>
         <sprite>sprites\spr_death</sprite>
+        <sprite>sprites\spr_caveCollapse</sprite>
+        <sprite>sprites\spr_checkpoint</sprite>
       </sprites>
       <sprites name="Backgrounds/Tilesets">
         <sprite>sprites\spr_tileset_grass</sprite>
@@ -91,6 +93,8 @@
     <script>scripts\checkHpHero.gml</script>
     <script>scripts\fadeout.gml</script>
     <script>scripts\draw_text_outlined.gml</script>
+    <script>scripts\scr_loadGame.gml</script>
+    <script>scripts\scr_saveGame.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_1</font>
@@ -126,16 +130,19 @@
         <object>objects\obj_sign2</object>
         <object>objects\obj_wasd</object>
         <object>objects\obj_lv1End</object>
+        <object>objects\obj_caveCollapse</object>
       </objects>
       <objects name="Unused">
         <object>objects\obj_lantern</object>
       </objects>
+      <object>objects\obj_checkpoint</object>
     </objects>
     <objects name="Menu/UI/Misc">
       <object>objects\obj_HUD</object>
       <object>objects\obj_speedrunTimer</object>
       <object>objects\obj_fadeIn</object>
       <object>objects\obj_fadeOut</object>
+      <object>objects\obj_heroDead</object>
       <object>objects\obj_persist</object>
       <object>objects\obj_button_mute</object>
       <objects name="Keys">
@@ -143,6 +150,9 @@
         <object>objects\obj_key_left</object>
         <object>objects\obj_key_down</object>
         <object>objects\obj_key_right</object>
+        <object>objects\obj_key_jump</object>
+        <object>objects\obj_key_attack</object>
+        <object>objects\obj_key_boost</object>
         <object>objects\obj_keyController</object>
       </objects>
       <objects name="Buttons">
