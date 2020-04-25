@@ -90,7 +90,8 @@ boostCooldownTimer = rechargeTime;
 //Placeholder Controls
 if (!file_exists("config.ini"))
 {
-    show_debug_message("ERROR READING CONFIG FILE, SWAPPING TO DEFAULT CONTROLS");
+    obj_persist.text = "ERROR ACESSING CONFIG FILE#SWITCHING TO DEFAULT CONTROLS";
+    obj_persist.alarm[0] = 360;
     global.key_jump = vk_space;
     global.key_attack = ord('J');
     global.key_boost = ord('K');
@@ -98,6 +99,7 @@ if (!file_exists("config.ini"))
     global.key_left = ord('A');
     global.key_down = ord('S');
     global.key_right = ord('D');
+    global.bestTime = 18000;
 }
 
 //Sprite
