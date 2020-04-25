@@ -41,7 +41,7 @@ else
     global.key_boost = ini_read_real("controls","boost",ord('K'));
     
     global.bestTime = ini_read_real("speedrun","bestTime",18000);
-    global.mins = ini_read_real("speedrun","mins",18000);
+    global.mins = ini_read_real("speedrun","mins",5);
     global.seconds = ini_read_real("speedrun","seconds",0);
     global.frames = ini_read_real("speedrun","frames",0);
     

@@ -21,6 +21,7 @@
       <sprites name="Mech">
         <sprite>sprites\spr_hero_attack_mech</sprite>
         <sprite>sprites\spr_hero_stand_mech</sprite>
+        <sprite>sprites\spr_hero_stand_mech_OLD</sprite>
         <sprite>sprites\spr_hero_run_mech</sprite>
         <sprite>sprites\spr_hero_jump_mech</sprite>
       </sprites>
@@ -69,6 +70,10 @@
       <sprites name="Drops">
         <sprite>sprites\spr_heart_pickup</sprite>
       </sprites>
+      <sprites name="Boss 1">
+        <sprite>sprites\spr_boss1_idle</sprite>
+        <sprite>sprites\spr_boss1_hitbox</sprite>
+      </sprites>
     </sprites>
     <sprites name="HUD/Misc">
       <sprite>sprites\spr_heart</sprite>
@@ -110,9 +115,15 @@
       <object>objects\obj_dashFadeout</object>
     </objects>
     <objects name="Enemies">
-      <object>objects\obj_enemy</object>
-      <object>objects\obj_enemy_sprite</object>
-      <object>objects\obj_heart_pickup</object>
+      <objects name="Basic Enemies">
+        <object>objects\obj_heart_pickup</object>
+        <object>objects\obj_enemy_sprite</object>
+        <object>objects\obj_enemy</object>
+      </objects>
+      <objects name="Boss1">
+        <object>objects\obj_boss1_sprite</object>
+        <object>objects\obj_boss1</object>
+      </objects>
     </objects>
     <objects name="Room Texts">
       <object>objects\obj_introText</object>
