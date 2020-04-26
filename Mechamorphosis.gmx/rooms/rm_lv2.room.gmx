@@ -849,31 +849,31 @@
     <instance objName="obj_wall" x="4736" y="1024" name="inst_98EE1809" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="4800" y="1024" name="inst_827FB717" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="4864" y="1024" name="inst_333B7991" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="4864" y="1792" name="inst_709EFB21" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="4800" y="1792" name="inst_3932C118" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="4736" y="1792" name="inst_45E06105" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="4672" y="1792" name="inst_58B82859" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="4608" y="1792" name="inst_1F99BDFD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="4544" y="1792" name="inst_CD06E147" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="4480" y="1792" name="inst_6F755E7C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="4416" y="1792" name="inst_30296F82" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="4352" y="1792" name="inst_D2F1BD4C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="4288" y="1792" name="inst_BAEDAA7F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="4224" y="1792" name="inst_627B9439" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="4160" y="1792" name="inst_4302E3A4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="4096" y="1792" name="inst_BB4DD43B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="4032" y="1792" name="inst_3898C996" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="3968" y="1792" name="inst_6D2C558D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="3904" y="1792" name="inst_1C335F6A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="3840" y="1792" name="inst_20BF27C5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="3776" y="1792" name="inst_3E365758" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="3712" y="1792" name="inst_4FE15969" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="3648" y="1792" name="inst_10B554F6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="3584" y="1792" name="inst_96F80D7E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="3520" y="1792" name="inst_E18BCE05" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="3456" y="1792" name="inst_5D8D5F78" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="3392" y="1792" name="inst_E6259005" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_bottomlessPit" x="3328" y="1792" name="inst_8080935C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="4864" y="1856" name="inst_709EFB21" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="4800" y="1856" name="inst_3932C118" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="4736" y="1856" name="inst_45E06105" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="4672" y="1856" name="inst_58B82859" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="4608" y="1856" name="inst_1F99BDFD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="4544" y="1856" name="inst_CD06E147" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="4480" y="1856" name="inst_6F755E7C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="4416" y="1856" name="inst_30296F82" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="4352" y="1856" name="inst_D2F1BD4C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="4288" y="1856" name="inst_BAEDAA7F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="4224" y="1856" name="inst_627B9439" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="4160" y="1856" name="inst_4302E3A4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="4096" y="1856" name="inst_BB4DD43B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="4032" y="1856" name="inst_3898C996" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="3968" y="1856" name="inst_6D2C558D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="3904" y="1856" name="inst_1C335F6A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="3840" y="1856" name="inst_20BF27C5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="3776" y="1856" name="inst_3E365758" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="3712" y="1856" name="inst_4FE15969" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="3648" y="1856" name="inst_10B554F6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="3584" y="1856" name="inst_96F80D7E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="3520" y="1856" name="inst_E18BCE05" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="3456" y="1856" name="inst_5D8D5F78" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="3392" y="1856" name="inst_E6259005" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_bottomlessPit" x="3328" y="1856" name="inst_8080935C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="4928" y="1920" name="inst_00CA9496" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="4928" y="1984" name="inst_38371F12" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="4928" y="2048" name="inst_8A2F8125" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
