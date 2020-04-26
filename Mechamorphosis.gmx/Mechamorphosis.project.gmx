@@ -40,6 +40,7 @@
       <sprite>sprites\spr_button_respawn</sprite>
       <sprite>sprites\spr_button_mute</sprite>
       <sprite>sprites\spr_button_start</sprite>
+      <sprite>sprites\spr_button_speedrun</sprite>
       <sprite>sprites\spr_button_options</sprite>
       <sprite>sprites\spr_button_exit</sprite>
       <sprite>sprites\spr_button_controls</sprite>
@@ -169,6 +170,7 @@
       <objects name="Buttons">
         <object>objects\obj_button_parent</object>
         <object>objects\obj_button_start</object>
+        <object>objects\obj_button_speedrun</object>
         <object>objects\obj_button_respawn</object>
         <object>objects\obj_button_options</object>
         <object>objects\obj_button_exit</object>

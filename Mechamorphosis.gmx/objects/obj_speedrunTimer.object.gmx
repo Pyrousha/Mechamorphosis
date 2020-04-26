@@ -2,7 +2,7 @@
 <object>
   <spriteName>spr_speedrun</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>-1000</depth>
   <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -52,7 +52,7 @@ frames = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room == rm_menu)
+            <string>if (room == rm_menu)&amp;&amp;(visible)
 {
     m = global.mins;
     mstr = string(m);
