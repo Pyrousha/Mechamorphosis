@@ -26,7 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>obj_hero.hasBoost = "true";
-obj_sign2.active = true;
 with (obj_hero.spriteObj)
 {
     idleSprite = spr_hero_stand_mech;
