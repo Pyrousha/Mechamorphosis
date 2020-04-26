@@ -69,9 +69,17 @@ hpMax = 5;
 hp = hpMax;
 damage = 0.5
 invincible = false;
-startX = 192-32;
-startY = 704;
 dead = false;
+if (room == rm_lv1)
+{
+    startX = 192-32;
+}
+if (room == rm_lv2)
+{
+    startX = 192-32;
+}
+startY = y;
+
 
 //Boost
 hasBoost = "false";
@@ -321,7 +329,7 @@ if collision_rectangle(hbL,hbB+1,hbR,hbB+1,obj_wall,false,false)
     if (intro == true)
     {
         intro = false;
-        makeObjDown(-64,0,obj_wall,13);
+        makeObjDown(-64,0,obj_wall,room_height/64);
     }
 }
 else
