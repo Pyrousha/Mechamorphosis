@@ -101,6 +101,7 @@
     <script>scripts\draw_text_outlined.gml</script>
     <script>scripts\scr_loadGame.gml</script>
     <script>scripts\scr_saveGame.gml</script>
+    <script>scripts\scr_heroMoveRoom.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_1</font>
