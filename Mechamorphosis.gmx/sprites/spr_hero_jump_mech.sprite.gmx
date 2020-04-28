@@ -7,8 +7,8 @@
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
-  <bbox_left>8</bbox_left>
-  <bbox_right>119</bbox_right>
+  <bbox_left>4</bbox_left>
+  <bbox_right>127</bbox_right>
   <bbox_top>0</bbox_top>
   <bbox_bottom>127</bbox_bottom>
   <HTile>0</HTile>
@@ -21,7 +21,5 @@
   <height>128</height>
   <frames>
     <frame index="0">images\spr_hero_jump_mech_0.png</frame>
-    <frame index="1">images\spr_hero_jump_mech_1.png</frame>
-    <frame index="2">images\spr_hero_jump_mech_2.png</frame>
   </frames>
 </sprite>

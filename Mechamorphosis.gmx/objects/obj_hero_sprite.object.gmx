@@ -88,6 +88,20 @@ if (obj_hero.hSpd &lt; 0)
 {
     image_xscale = -1;
 }
+if (sprite_index == spr_hero_equip)
+{
+    if (image_index &gt;= sprite_get_number(spr_hero_equip) - 1)
+    {
+        idleSprite = spr_hero_stand_mech;
+        runSprite = spr_hero_run_mech;
+        jumpSprite = spr_hero_jump_mech;
+        attackSprite = spr_hero_attack_mech;
+        obj_hero.hasBoost = "true";
+        sprite_index = idleSprite;
+        obj_hero.canMove = true;
+    }
+    exit;
+}
 switch(obj_hero.jumpState)
 {
     case("ground"):

@@ -93,8 +93,7 @@ if (room == rm_menu)
     draw_set_halign(fa_middle);
     draw_set_valign(fa_center);
     draw_set_font(fnt_12x10_BIG);
-    //draw_text_outlined(room_width/2,160,c_black,make_colour_rgb(0,68,219),"MECHAMORPHOSIS(DEMO)");
-    draw_text_outlined(room_width/2,160,c_black,make_colour_rgb(160,160,160),"MECHAMORPHOSIS(DEMO)");
+    draw_text_outlined(room_width/2,160,c_black,make_colour_rgb(160,160,160),"MECHAMORPHOSIS(DEMO)",6);
 }
 </string>
           </argument>
@@ -104,21 +103,25 @@ if (room == rm_menu)
     <event eventtype="9" enumb="13">
       <action>
         <libid>1</libid>
-        <id>224</id>
-        <kind>0</kind>
+        <id>603</id>
+        <kind>7</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_another_room</functionname>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>11</kind>
-            <room>rm_lv2</room>
+            <kind>1</kind>
+            <string>if (debug_mode)
+{
+    room = rm_lv2;
+}
+</string>
           </argument>
         </arguments>
       </action>
