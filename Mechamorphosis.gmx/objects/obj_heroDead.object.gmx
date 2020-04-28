@@ -87,6 +87,14 @@ obj_hero.dead = true;
         {
             alarm[0] = 1;
         }
+        with (obj_boss1)
+        {
+            alarm[0] = 1;
+        }
+        with (obj_boss1_arena_top)
+        {
+            alarm[0] = 1;
+        }   
         with (obj_heart_pickup)
         {
             instance_destroy();

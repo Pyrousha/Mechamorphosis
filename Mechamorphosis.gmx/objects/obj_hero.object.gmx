@@ -109,6 +109,7 @@ if (!file_exists("config.ini"))
     global.key_right = ord('D');
     global.bestTime = 18000;
 }
+canMove = true;
 
 //Sprite
 spriteObj = instance_create(x,y,obj_hero_sprite);
@@ -135,7 +136,7 @@ vSpd = 10;
 //Dev hacks
 if (debug_mode)
 {
-    instance_create(832,704,obj_boostPowerUp);
+    //instance_create(832,704,obj_boostPowerUp);
 }
 </string>
           </argument>
@@ -184,7 +185,7 @@ spriteObj.image_alpha = 1;
           <argument>
             <kind>1</kind>
             <string>///Debug messages
-show_debug_message("start X,Y " + string(startX)+ ", "+string(startY));
+//show_debug_message("start X,Y " + string(startX)+ ", "+string(startY));
 </string>
           </argument>
         </arguments>
@@ -264,6 +265,11 @@ if (view_yview != view_y1)
     view_yview = view_y1;
 }
 }
+
+if (debug_mode) &amp;&amp; (keyboard_check(vk_left))
+{
+    view_xview = -128;
+}
 </string>
           </argument>
         </arguments>
@@ -329,7 +335,14 @@ if collision_rectangle(hbL,hbB+1,hbR,hbB+1,obj_wall,false,false)
     if (intro == true)
     {
         intro = false;
-        makeObjDown(-64,0,obj_wall,room_height/64);
+        if (room == rm_lv2)
+        {
+            makeObjDown(-64,0,obj_wall,room_height/64);
+        }
+        if (room == rm_lv1)
+        {
+            makeObjDown(-64,0,obj_wall,13);
+        }
     }
 }
 else
@@ -445,6 +458,10 @@ if ((boostState == "recharge")||(boostState = "charged"))
         }
     }
 }
+if (!canMove)
+{
+    lrState = "null";
+}
 
 //JumpState
 if  (((boostState == "recharge")||(boostState = "charged")) || ((onGround = "true")&amp;&amp;(boostState == "boosting")))
@@ -493,7 +510,7 @@ if  (((boostState == "recharge")||(boostState = "charged")) || ((onGround = "tru
                 lastGroundX = inst.x;
                 lastGroundY = inst.y - sprite_height;
             }
-            if (keyboard_check_pressed(global.key_jump) || (bufferJump == "true"))
+            if (keyboard_check_pressed(global.key_jump) || (bufferJump == "true")) &amp;&amp; (canMove)
             {
                 bufferJump = "false";
                 jumpState = "air";
@@ -714,7 +731,7 @@ spriteObj.y = y + (sprite_height/2);
           <argument>
             <kind>1</kind>
             <string>///Attack
-if (keyboard_check_pressed(global.key_attack))
+if (keyboard_check_pressed(global.key_attack)) &amp;&amp; (canMove)
 {
     if (!instance_exists(obj_hero_attack))
     {
