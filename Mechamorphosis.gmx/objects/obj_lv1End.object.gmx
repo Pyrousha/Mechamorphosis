@@ -59,7 +59,7 @@ for (i = 0; i &lt; (room_width); i+= bgTileX)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>fadeout(rm_ending,15);
+            <string>fadeout(rm_lv2,15);
 </string>
           </argument>
         </arguments>

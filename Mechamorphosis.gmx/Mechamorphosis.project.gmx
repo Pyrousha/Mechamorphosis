@@ -18,12 +18,17 @@
   <sprites name="sprites">
     <sprites name="Hero">
       <sprite>sprites\spr_hero_hitbox</sprite>
+      <sprite>sprites\spr_hero_equip</sprite>
       <sprites name="Mech">
         <sprite>sprites\spr_hero_attack_mech</sprite>
         <sprite>sprites\spr_hero_stand_mech</sprite>
         <sprite>sprites\spr_hero_stand_mech_OLD</sprite>
         <sprite>sprites\spr_hero_run_mech</sprite>
+        <sprite>sprites\spr_hero_run_mech_OLD</sprite>
+        <sprite>sprites\spr_hero_jump_mech_OLD</sprite>
         <sprite>sprites\spr_hero_jump_mech</sprite>
+        <sprite>sprites\spr_boost_side</sprite>
+        <sprite>sprites\spr_boost_dia</sprite>
       </sprites>
       <sprites name="Human">
         <sprite>sprites\spr_hero_attack</sprite>
@@ -66,15 +71,20 @@
       </sprites>
     </sprites>
     <sprites name="Enemies">
-      <sprite>sprites\spr_slime</sprite>
-      <sprite>sprites\spr_slime_hitbox</sprite>
       <sprites name="Drops">
         <sprite>sprites\spr_heart_pickup</sprite>
       </sprites>
       <sprites name="Boss 1">
         <sprite>sprites\spr_boss1_idle</sprite>
         <sprite>sprites\spr_boss1_hitbox</sprite>
+        <sprite>sprites\spr_boss_dequip</sprite>
+        <sprite>sprites\spr_boss1_burn</sprite>
+        <sprite>sprites\spr_boss1_run</sprite>
+        <sprite>sprites\spr_boss1_jump</sprite>
       </sprites>
+      <sprite>sprites\spr_bushRobot_B</sprite>
+      <sprite>sprites\spr_bushRobot_G</sprite>
+      <sprite>sprites\spr_bushRobot_hitbox</sprite>
     </sprites>
     <sprites name="HUD/Misc">
       <sprite>sprites\spr_heart</sprite>
@@ -115,6 +125,7 @@
       <object>objects\obj_hero_attack</object>
       <object>objects\obj_boostPowerUp</object>
       <object>objects\obj_dashFadeout</object>
+      <object>objects\obj_bossDashFadeout</object>
     </objects>
     <objects name="Enemies">
       <objects name="Basic Enemies">
@@ -125,6 +136,8 @@
       <objects name="Boss1">
         <object>objects\obj_boss1_sprite</object>
         <object>objects\obj_boss1</object>
+        <object>objects\obj_boss1_arena_top</object>
+        <object>objects\obj_boost_boss</object>
       </objects>
     </objects>
     <objects name="Room Texts">

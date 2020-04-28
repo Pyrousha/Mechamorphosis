@@ -1,8 +1,8 @@
-//draw_text_outlined(x, y, outline color, string color, string)  
+//draw_text_outlined(x, y, outline color, string color, string, outlineSize)  
 var xx,yy;  
 xx = argument[0];  
 yy = argument[1];  
-outlineSize = 6;
+outlineSize = argument[5];
 //Outline  
 draw_set_color(argument[2]);  
 draw_text(xx+outlineSize, yy+outlineSize, argument[4]);  

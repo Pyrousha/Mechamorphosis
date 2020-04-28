@@ -2,7 +2,7 @@
 <object>
   <spriteName>spr_boss1_hitbox</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
+  <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -25,27 +25,49 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Variables
+            <string>//States
+jumpState = "air";
+boostState = "recharge";
+combatState = "run";
+doneBurning = false;
+
+//Boost
+boostDuration = 45;
+boostTimer = boostDuration;
+rechargeTime = 120;
+rechargeTimer = rechargeTime;
+boostSpeed = 20;
+boostTeleFrames = 12;
+
+//Variables
 hSpd = 0;
 vSpd = 0;
 dir = 0;
 startX = x;
 startY = y;
+maxHSpd = 4;
 
-//Death
+//Death (lower wall)
 yWall = 3456;
-xWall = -64;
 i = 0;
 wallLowerSpeed = 15;
 
 //Stats
 //Ground Movement
-maxHSpd = 5;
+maxHSpd = 4;
+
+//Jump/Air-based
+jumpSpeed = 20;
+ffAir = 0.5;
+gravUp = 1;
+gravDown = 1.35;
+jumpBoostFrictMax = 20;
+jumpBoostFrictTimer = 0;
 
 //Combat
-hpMax = 1;
+hpMax = 10;
 hp = hpMax;
-damage = 0.5;
+damage = 1;
 dead = false;
 
 //Sprite
@@ -56,7 +78,15 @@ spriteObj.parentObj = self;
 
 lootList = ds_list_create();
 ds_list_add(lootList,obj_boostPowerUp);
-dropRate = 1;
+dropRate = -1;
+
+//Healthbar
+hbTopStart = 4*64;
+hbWidth = 5*64;
+hbHeight = 32;
+outlineSize = 4;
+textY = 3*64 + 32;
+redColour = make_colour_rgb(151,0,0);
 </string>
           </argument>
         </arguments>
@@ -81,8 +111,8 @@ dropRate = 1;
             <kind>1</kind>
             <string>if (i &lt; 4)
 {
-    inst1 = collision_point(xWall,yWall + 64*i,obj_wall,false,true);
-    inst2 = collision_point(0,yWall + 64*i,obj_wall,false,true);
+    inst1 = collision_point(-32,yWall + 64*i,obj_wall,false,true);
+    inst2 = collision_point(32,yWall + 64*i,obj_wall,false,true);
     instance_destroy(inst1);
     instance_destroy(inst2);
     i++;
@@ -110,11 +140,13 @@ dropRate = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>dead = false;
-spriteObj.visible = true;
-x = startX;
-y = startY;
-hp = hpMax;
+            <string>if (dead == false)
+{
+    spriteObj.visible = true;
+    x = startX;
+    y = startY;
+    hp = hpMax;
+}
 </string>
           </argument>
         </arguments>
@@ -137,12 +169,11 @@ hp = hpMax;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Debug
-/*
-if (isInView())
+            <string>///If not in view, exit
+if (!isInView())
 {
-    show_debug_message("hSpd: " + string(hSpd));
-}*/
+    exit;
+}
 </string>
           </argument>
         </arguments>
@@ -163,46 +194,157 @@ if (isInView())
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Movement, input, and collision
-
-if (obj_hero.roomMoving == "true") || (isInView() == false)
+            <string>///State swapping
+if (hp &lt;= 0)
 {
-    spriteObj.image_speed = 0;
-    exit;
+    boostState = "recharge";
+    combatState = "stand";
+    hSpd = 0;
+    if (collision_line(hbL, hbB + 1, hbR, hbB + 1, obj_wall,false, true)) &amp;&amp; (doneBurning == false)
+    {
+        spriteObj.sprite_index = spr_boss1_burn;
+        doneBurning = true;
+    }
+    vSpd -= gravDown;
 }
 else
 {
-    spriteObj.image_speed = image_speed;
+switch(boostState)
+{
+    case ("charged"):
+    {
+        boostState = "boosting";
+        combatState = "boosting";
+        audio_play_sound(snd_boost,5,false);
+        break;
+    }
+    case ("boosting"):
+    {
+        break;
+    }
+    case ("recharge"):
+    {
+        if (rechargeTimer &lt;= 0)
+        {
+            rechargeTimer = rechargeTime;
+            boostState = "charged";
+        }
+        else
+        {
+            rechargeTimer--;
+            if (rechargeTimer &lt; boostTeleFrames)
+            {
+                dir = 45*round(point_direction(x,y,obj_hero.x,obj_hero.y)/45);
+                instance_create(spriteObj.x,spriteObj.y,obj_boost_boss);
+                combatState = "stand";
+                hSpd = 0;
+            }
+        }
+    }
 }
 
+switch(combatState)
+{
+    case ("run"):
+    {
+        if (obj_hero.x &lt; x)
+        {
+            hSpd = 0-maxHSpd;
+        }  
+        else
+        {
+            hSpd = maxHSpd;
+        }
+        break;
+    }
+    case ("boosting"):
+    {  
+        if (boostTimer &lt;= 0)
+        {
+            combatState = "run";
+            boostTimer = boostDuration; 
+            boostState = "recharge";
+        }
+        else
+        {
+            vSpd = boostSpeed*dsin(dir);
+            hSpd = boostSpeed*dcos(dir);
+            instance_create(x + (sprite_width/2),y + (sprite_height/2),obj_bossDashFadeout);
+            boostTimer --;
+        }
+        break;
+    }
+}
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Gravity and Collision
 
-hbL = x;
-hbR = x+sprite_width-1;
-hbT = y;
-hbB = y+sprite_height-1;
+//Dead
+if (!dead)
+{
+    hbL = x;
+    hbR = x+sprite_width-1;
+    hbT = y;
+    hbB = y+sprite_height-1;
+
+    if (collision_line(hbL, hbB + 1, hbR, hbB + 1, obj_wall,false, true))
+    {
+        jumpState = "ground";   
+    }
+    else
+    {
+        jumpState = "air";
+    }
+
+    //JumpState
+    if (jumpState == "air")
+    {
+        if (vSpd &lt;= 0) //falling
+        {
+            vSpd -= gravDown;
+        }
+        else
+        {
+            vSpd -= gravUp; //Going up
+        }
+    }
+} 
+else //if dead
+{
+    
+}
+show_debug_message("enemy jumpState: "+string(jumpState));
 
 round(x);
 round(y);
 round(hSpd);
 round(vSpd);
 
-
 //Horizontal Collision
-//Check off edge
-if ((!collision_point(hbL+hSpd,hbB+1,obj_wall,false,true)) || (!collision_point(hbR+hSpd,hbB+1,obj_wall,false,true)) || (hbR+hSpd &gt; view_xview + view_wview) || (x+hSpd&lt;view_xview))
-{
-    hSpd = 0-hSpd;
-}
-
 //Left
 var inst = collision_rectangle(hbL+hSpd,hbT,hbL,hbB,obj_wall,false,true);
 if (inst!=noone)
 {
     hSpd = (inst.x+inst.sprite_width)-x;
-    if (hSpd == 0)
-    {
-        hSpd = maxHSpd;
-    }
 }
 else
 {
@@ -211,10 +353,6 @@ else
     if (inst!= noone)
     {
         hSpd = (inst.x - (sprite_width+x));
-        if (hSpd == 0)
-        {
-            hSpd = 0-maxHSpd;
-        }
     }
 }
 
@@ -234,10 +372,13 @@ else //Down
     }
 }
 
-x+=hSpd;
-y-=vSpd;
-spriteObj.x = x + (sprite_width/2);
-spriteObj.y = y + (sprite_height/2);
+if (isInView())
+{
+    x+=hSpd;
+    y-=vSpd;
+    spriteObj.x = x + (sprite_width/2);
+    spriteObj.y = y + (sprite_height/2);
+}
 
 </string>
           </argument>
@@ -261,13 +402,15 @@ spriteObj.y = y + (sprite_height/2);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (ds_list_find_index(other.enemiesHitList,id) &lt; 0)
+            <string>if (ds_list_find_index(other.enemiesHitList,id) &lt; 0) &amp;&amp; (dead == false)
 {
     ds_list_add(other.enemiesHitList,id);
     eDamage(self, other.damage);
     if (hp &lt;= 0)
     {
         alarm[8] = wallLowerSpeed;
+        spriteObj.visible = true;
+        obj_hero.canMove = false;
     }
 }
 </string>
@@ -296,6 +439,56 @@ spriteObj.y = y + (sprite_height/2);
 {
     heroTakeDamage(damage);
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw Healthbar
+
+if (!isInView()) || (dead)
+{
+    exit;
+}
+
+//Name
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle)
+draw_set_font(fnt_12x10);
+draw_text_outlined(view_xview + view_wview/2,view_yview + textY,c_black,redColour,"THE COWARDLY SCIENTIST",4);
+
+
+//outline
+draw_set_colour(c_black);
+hbLeft = view_xview + view_wview/2 - hbWidth;
+hbRight = view_xview + view_wview/2 + hbWidth;
+hbTop = view_yview + hbTopStart;
+hbBottom = hbTop + hbHeight;
+draw_rectangle(hbLeft,hbTop,hbRight,hbBottom,false);
+
+//health
+draw_set_colour(redColour);
+healthWidth = (hbRight - outlineSize) - (hbLeft + outlineSize);
+draw_rectangle(hbLeft + outlineSize,hbTop + outlineSize,hbLeft + outlineSize + (hp/hpMax)*(healthWidth),hbBottom - outlineSize,false);
+
+draw_set_colour(c_white);
 </string>
           </argument>
         </arguments>

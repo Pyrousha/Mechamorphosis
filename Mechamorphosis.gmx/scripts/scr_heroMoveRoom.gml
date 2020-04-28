@@ -90,5 +90,6 @@ switch(room)
         view_y = view_yview;
         view_x1 = view_x;
         view_y1 = view_y;
+        break;
     }
 }
