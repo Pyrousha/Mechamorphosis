@@ -91,7 +91,15 @@ obj_hero.dead = true;
         {
             alarm[0] = 1;
         }
+        with (obj_boss2)
+        {
+            alarm[0] = 1;
+        }
         with (obj_boss1_arena_top)
+        {
+            alarm[0] = 1;
+        }   
+        with (obj_boss2_arena_top)
         {
             alarm[0] = 1;
         }   

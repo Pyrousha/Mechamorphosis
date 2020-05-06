@@ -26,12 +26,15 @@
           <argument>
             <kind>1</kind>
             <string>//Music
-audio_stop_sound(global.introSong);
-global.levelMusic = audio_play_sound(snd_song2_intro,5,false);
-audio_sound_gain(global.levelMusic,global.musicVolume,1);
-distLeft = (audio_sound_length(global.levelMusic)-1);
-soundLoop = false;
-soundLoopIsDone = false;
+if (room == rm_lv1)
+{
+    audio_stop_sound(global.introSong);
+    global.levelMusic = audio_play_sound(snd_song2_intro,5,false);
+    audio_sound_gain(global.levelMusic,global.musicVolume,1);
+    distLeft = (audio_sound_length(global.levelMusic)-1);
+    soundLoop = false;
+    soundLoopIsDone = false;
+}
 
 //States
 lrState = "stand";
@@ -759,6 +762,10 @@ if (keyboard_check_pressed(global.key_attack)) &amp;&amp; (canMove)
           <argument>
             <kind>1</kind>
             <string>///Sound Looping
+if (room != rm_lv1)
+{
+    exit;
+}
 if (!soundLoop)
 {
     distLeft = ((audio_sound_length(global.levelMusic)) - (audio_sound_get_track_position(global.levelMusic)));
@@ -769,14 +776,6 @@ if (!soundLoop)
         audio_sound_gain(global.levelMusic,global.musicVolume,0);
         soundLoop = true;;
     }
-    /*if (distLeft &lt;= 1)
-    {
-        audio_sound_gain(global.levelMusic,0,1);
-        global.levelMusic = audio_play_sound(snd_song2_loop,5,false);
-        audio_sound_gain(global.levelMusic,global.musicVolume,1);
-        audio_sound_set_track_position(global.levelMusic, distLeft);
-        soundLoop = true;
-    }*/
 }
 </string>
           </argument>

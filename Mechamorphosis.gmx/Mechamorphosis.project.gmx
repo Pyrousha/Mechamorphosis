@@ -14,6 +14,7 @@
     <sound>sound\snd_song2_intro</sound>
     <sound>sound\snd_song2_loop</sound>
     <sound>sound\snd_enemyDeath</sound>
+    <sound>sound\snd_clank</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Hero">
@@ -46,11 +47,12 @@
       <sprite>sprites\spr_button_mute</sprite>
       <sprite>sprites\spr_button_start</sprite>
       <sprite>sprites\spr_button_speedrun</sprite>
+      <sprite>sprites\spr_button_control</sprite>
+      <sprite>sprites\spr_button_save</sprite>
       <sprite>sprites\spr_button_options</sprite>
       <sprite>sprites\spr_button_exit</sprite>
       <sprite>sprites\spr_button_controls</sprite>
       <sprite>sprites\spr_button_close</sprite>
-      <sprite>sprites\spr_button_save</sprite>
       <sprite>sprites\spr_keyController</sprite>
       <sprite>sprites\spr_key</sprite>
       <sprite>sprites\spr_selectIndicator</sprite>
@@ -63,11 +65,15 @@
         <sprite>sprites\spr_lantern</sprite>
         <sprite>sprites\spr_death</sprite>
         <sprite>sprites\spr_caveCollapse</sprite>
+        <sprite>sprites\spr_WALLODEATH</sprite>
         <sprite>sprites\spr_checkpoint</sprite>
       </sprites>
       <sprites name="Backgrounds/Tilesets">
         <sprite>sprites\spr_tileset_grass</sprite>
+        <sprite>sprites\spr_tileset_city</sprite>
         <sprite>sprites\spr_bg_lv1</sprite>
+        <sprite>sprites\spr_bg_Lv2</sprite>
+        <sprite>sprites\spr_lv1_UNUSED_TILESET</sprite>
       </sprites>
     </sprites>
     <sprites name="Enemies">
@@ -81,6 +87,15 @@
         <sprite>sprites\spr_boss1_burn</sprite>
         <sprite>sprites\spr_boss1_run</sprite>
         <sprite>sprites\spr_boss1_jump</sprite>
+      </sprites>
+      <sprites name="Boss 2">
+        <sprite>sprites\spr_boss2_hitbox</sprite>
+        <sprite>sprites\spr_boss2_idle</sprite>
+        <sprite>sprites\spr_boss2_overheat</sprite>
+        <sprite>sprites\spr_boss2_explode</sprite>
+        <sprite>sprites\spr_laser</sprite>
+        <sprite>sprites\spr_laser_parent</sprite>
+        <sprite>sprites\spr_missile</sprite>
       </sprites>
       <sprite>sprites\spr_bushRobot_B</sprite>
       <sprite>sprites\spr_bushRobot_G</sprite>
@@ -98,6 +113,7 @@
   </sprites>
   <backgrounds name="background">
     <background>background\bg_tiles</background>
+    <background>background\bg_Lv1_tileset</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -112,10 +128,12 @@
     <script>scripts\scr_loadGame.gml</script>
     <script>scripts\scr_saveGame.gml</script>
     <script>scripts\scr_heroMoveRoom.gml</script>
+    <script>scripts\scr_drawKey.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_1</font>
     <font>fonts\fnt_12x10</font>
+    <font>fonts\fnt_12x10_small</font>
     <font>fonts\fnt_12x10_BIG</font>
   </fonts>
   <objects name="objects">
@@ -129,15 +147,23 @@
     </objects>
     <objects name="Enemies">
       <objects name="Basic Enemies">
-        <object>objects\obj_heart_pickup</object>
-        <object>objects\obj_enemy_sprite</object>
         <object>objects\obj_enemy</object>
+        <object>objects\obj_enemy_sprite</object>
+        <object>objects\obj_heart_pickup</object>
       </objects>
       <objects name="Boss1">
-        <object>objects\obj_boss1_sprite</object>
         <object>objects\obj_boss1</object>
+        <object>objects\obj_boss1_sprite</object>
         <object>objects\obj_boss1_arena_top</object>
         <object>objects\obj_boost_boss</object>
+      </objects>
+      <objects name="Boss2">
+        <object>objects\obj_boss2</object>
+        <object>objects\obj_boss2_sprite</object>
+        <object>objects\obj_boss2_arena_top</object>
+        <object>objects\obj_laserParent</object>
+        <object>objects\obj_laserBlock</object>
+        <object>objects\obj_missile</object>
       </objects>
     </objects>
     <objects name="Room Texts">
@@ -157,6 +183,9 @@
         <object>objects\obj_wasd</object>
         <object>objects\obj_lv1End</object>
         <object>objects\obj_caveCollapse</object>
+      </objects>
+      <objects name="Level 2">
+        <object>objects\obj_lv2End</object>
       </objects>
       <objects name="Unused">
         <object>objects\obj_lantern</object>
