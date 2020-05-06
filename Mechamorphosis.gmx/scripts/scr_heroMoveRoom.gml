@@ -84,12 +84,15 @@ switch(room)
     }
     case (rm_lv2):
     {
-        view_object[0] = self;
-        shiftRoom = false;
-        view_x = view_xview;
-        view_y = view_yview;
-        view_x1 = view_x;
-        view_y1 = view_y;
-        break;
+        if ((x < 9152) || (x > 11648)) || (y> 3840 + (view_hview/2))
+        {
+            view_object[0] = self;
+            shiftRoom = false;
+            view_x = view_xview;
+            view_y = view_yview;
+            view_x1 = view_x;
+            view_y1 = view_y;
+            break;
+        }
     }
 }

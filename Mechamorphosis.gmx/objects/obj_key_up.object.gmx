@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>key = global.key_up;
+name = "UP";
 </string>
           </argument>
         </arguments>
@@ -75,45 +76,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
-draw_set_font(fnt_1);
-draw_set_halign(fa_center);
-draw_set_valign(fa_middle);
-
-if (hover == false)
-{
-    draw_set_colour(c_black);
-}
-else
-{
-    draw_set_colour(c_blue);
-}
-
-switch(key)
-{
-    case vk_up:
-        draw_text(x+sprite_width/2,y+sprite_height/2,string("Up"));
-    break;
-    
-    case vk_down:
-        draw_text(x+sprite_width/2,y+sprite_height/2,string("Down"));
-    break;
-    
-    case vk_left:
-        draw_text(x+sprite_width/2,y+sprite_height/2,string("Left"));
-    break;
-    
-    case vk_right:
-        draw_text(x+sprite_width/2,y+sprite_height/2,string("Right"));
-    break;
-    
-    case vk_space:
-        draw_text(x+sprite_width/2,y+sprite_height/2,string("Spc"));
-    break;
-    
-    default:
-        draw_text(x+sprite_width/2,y+sprite_height/2,string(chr(key)));
-}
+            <string>scr_drawKey();
 </string>
           </argument>
         </arguments>

@@ -146,6 +146,20 @@ redColour = make_colour_rgb(151,0,0);
     x = startX;
     y = startY;
     hp = hpMax;
+    
+    //States
+jumpState = "air";
+boostState = "recharge";
+combatState = "run";
+doneBurning = false;
+
+//Boost
+boostDuration = 45;
+boostTimer = boostDuration;
+rechargeTime = 120;
+rechargeTimer = rechargeTime;
+boostSpeed = 20;
+boostTeleFrames = 12;
 }
 </string>
           </argument>

@@ -28,12 +28,10 @@
             <string>audio_sound_gain(global.levelMusic, 0, 1000);
 
 textList = ds_list_create()
-ds_list_add(textList,"YOU MAKE YOUR WAY OUT OF THE CAVE");
-ds_list_add(textList,"BUT YOU ARE GREETED#BY A TERRIBLE SIGHT...");
-ds_list_add(textList,"WERE YOU TOO LATE?");
-ds_list_add(textList,"TO BE CONTINUED...#(END OF DEMO)");
-ds_list_add(textList,"THANK YOU FOR PLAYING!");
-ds_list_add(textList,"MECHAMORPHOSIS DEMO");
+ds_list_add(textList,"YOU HAVE DEFEATED THE AI!");
+ds_list_add(textList,"THE CITY MAY NEVER BE THE SAME...");
+ds_list_add(textList,"BUT FOR NOW,#IT IS SAFE ONCE MORE!");
+ds_list_add(textList,"CONGRATULATIONS!#THANK YOU FOR PLAYING!");
 i=0;
 
 text = (ds_list_find_value(textList,i))

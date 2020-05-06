@@ -3,7 +3,7 @@
   <spriteName>spr_caveCollapse</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,7 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>go = false;
-hSpd = 7.5;
+hSpdOn = 6;
+hSpdOff = 10;
+hSpd = 8;
+hSpdAccel = 0.2;
 startX = x;
 </string>
           </argument>
@@ -52,6 +55,14 @@ startX = x;
             <kind>1</kind>
             <string>if (go = true)
 {
+    if (x+sprite_width &lt; view_xview + (view_wview/6))
+    {
+        hSpd = min(hSpdOff,hSpd + hSpdAccel);
+    }
+    else
+    {
+        hSpd = max(hSpdOn,hSpd - hSpdAccel);
+    }
     x = min(x+hSpd, 8128 - sprite_width);
 }
 else

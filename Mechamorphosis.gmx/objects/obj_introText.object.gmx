@@ -27,8 +27,9 @@
             <kind>1</kind>
             <string>audio_sound_gain(global.introSong, 0, 1000);
 textList = ds_list_create()
-ds_list_add(textList,"THE CITY IS IN DANGER!#(PRESS [SPACE] TO CONTINUE)");
-ds_list_add(textList,"VENTURE THROUGH THE FOREST CAVE,#AND SAVE THE CITY!");
+ds_list_add(textList,"AN EVIL AI HAS TAKEN OVER THE CITY#(PRESS [SPACE] TO CONTINUE)");
+ds_list_add(textList,"WHILE OTHERS FLEE,#YOU FIGHT YOUR WAY FORWARD");
+ds_list_add(textList,"TO THE CITY CENTER!");
 i=0;
 
 text = (ds_list_find_value(textList,i))
