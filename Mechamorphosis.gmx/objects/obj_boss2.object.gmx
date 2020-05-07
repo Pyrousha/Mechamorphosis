@@ -39,6 +39,8 @@ missileNum = 3;
 overheatTime = 180;
 overheatTimer = overheatTime;
 
+soundTimer = 20;
+
 //Death (lower wall)
 xWall = 11200;
 i = 0;
@@ -199,7 +201,12 @@ enemyList = ds_list_create();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///If not in view, exit
+            <string>///If not in view, exit (also sound timer)
+if (soundTimer &lt;20)
+{
+    soundTimer++;
+}
+
 if (!isInView())
 {
     exit;
@@ -373,8 +380,11 @@ switch(combatState)
     }
     else
     {
-        instance_destroy(other);
-        audio_play_sound(snd_clank,5,false);
+        if (soundTimer &gt;= 20)
+        {
+            audio_play_sound(snd_clank,5,false);
+            soundTimer = 0;
+        }
     }
 }
 </string>
