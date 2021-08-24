@@ -80,7 +80,7 @@ text = "";
     draw_set_halign(fa_left);
     draw_set_valign(fa_top);
     draw_set_font(fnt_12x10);
-    draw_text(view_xview+32, view_yview+32, "FPS: " + string(fps));
+    draw_text(view_xview+32, view_yview+32, "FPS: " + string(fps_real));
 }
 if (text != "")
 {
