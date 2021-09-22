@@ -25,13 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>audio_sound_gain(global.levelMusic, 0, 1000);
+            <string>audio_stop_sound(global.introSong);
+audio_stop_sound(snd_song2_intro);
+audio_stop_sound(snd_song2_loop);
 
 textList = ds_list_create()
-ds_list_add(textList,"YOU HAVE DEFEATED THE AI!");
-ds_list_add(textList,"THE CITY MAY NEVER BE THE SAME...");
-ds_list_add(textList,"BUT FOR NOW,#IT IS SAFE ONCE MORE!");
-ds_list_add(textList,"CONGRATULATIONS!#THANK YOU FOR PLAYING!");
 ds_list_add(textList,"Story/Writing:#Maggie Hendon# #Animations/Artwork:#Tosia Xiong# #Level Design:#Travis Bird + Maggie Hendon# #Programming/Combat Design:#Travis Bird##");
 i=0;
 

@@ -26,8 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>draw_set_font(fnt_1);
-global.introSong = audio_play_sound(snd_song1,5,true);
-audio_sound_gain(global.introSong,global.musicVolume,1);
 global.blueColour = make_colour_rgb(38,27,252);
 text = "";
 </string>

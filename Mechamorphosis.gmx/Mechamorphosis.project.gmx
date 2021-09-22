@@ -48,6 +48,7 @@
       <sprite>sprites\spr_button_start</sprite>
       <sprite>sprites\spr_button_speedrun</sprite>
       <sprite>sprites\spr_button_control</sprite>
+      <sprite>sprites\spr_button_blank</sprite>
       <sprite>sprites\spr_button_save</sprite>
       <sprite>sprites\spr_button_options</sprite>
       <sprite>sprites\spr_button_exit</sprite>
@@ -170,6 +171,7 @@
     <objects name="Room Texts">
       <object>objects\obj_introText</object>
       <object>objects\obj_endingText</object>
+      <object>objects\obj_creditText</object>
       <object>objects\obj_deadText</object>
     </objects>
     <objects name="Terrain">
@@ -221,6 +223,7 @@
         <object>objects\obj_button_controls</object>
         <object>objects\obj_button_close</object>
         <object>objects\obj_button_save</object>
+        <object>objects\obj_button_credits</object>
       </objects>
       <object>objects\obj_background</object>
     </objects>
@@ -231,6 +234,7 @@
       <room>rooms\rm_menu</room>
       <room>rooms\rm_options</room>
       <room>rooms\rm_controls</room>
+      <room>rooms\rm_credits</room>
     </rooms>
     <room>rooms\rm_intro</room>
     <room>rooms\rm_lv1</room>
