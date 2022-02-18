@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>destroyTime = 40;
+            <string>destroyTime = 30;
 targX = obj_hero.x + obj_hero.sprite_width/2;
 targY = obj_hero.y + obj_hero.sprite_height/2;
 
@@ -61,6 +61,7 @@ alarm[0] = 1;
 {
     instance_destroy(ds_list_find_value(laserList,j));
 }
+
 instance_destroy();
 </string>
           </argument>
@@ -122,6 +123,26 @@ while (!collision_point(x - dx, y - dy, obj_wall, false, true))
 }
 visible = true;
 image_index = 0;
+
+//Spawn laser telegraphs
+laserIndList = ds_list_create();
+testX = x;
+testY = y;
+i = 0;
+while (!collision_point(testX, testY, obj_wall, false, true))
+{
+    laserInst = instance_create(testX, testY, obj_laserBlockInd);
+    laserInst.image_angle = image_angle;
+    ds_list_add(laserIndList,laserInst);
+    testX += dx;
+    testY += dy; 
+    i++;
+}
+
+with (ds_list_find_value(laserIndList, i-1))
+{
+    image_index = 1;    
+}
 </string>
           </argument>
         </arguments>
@@ -144,7 +165,15 @@ image_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed = 0;
+            <string>//Remove telegraphs
+for(i = 0;i&lt; ds_list_size(laserIndList); i++)
+{
+    instance_destroy(ds_list_find_value(laserIndList,i));
+}
+
+//Create lasers
+
+image_speed = 0;
 
 laserList = ds_list_create();
 testX = x;

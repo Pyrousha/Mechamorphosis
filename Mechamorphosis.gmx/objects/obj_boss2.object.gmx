@@ -28,16 +28,23 @@
             <string>//States and timers
 combatState = "reload";
 
-attackTime = 180;
+lastAttack = ""
+nextAttack = "UltraGamerMove"
+
+maxAttackTime = 140;
 attackTimer = 60;
+
+overheatTime = 600;
+overheatTimer = overheatTime;
+
+atkTimerScale = 12;
+overheatTimerScale = 0;
+
 numAttacks = 0;
 numAttacksTillStun = 3;
 attackList = ds_list_create();
 ds_list_add(attackList,"missiles","summon","laser");
 missileNum = 3;
-
-overheatTime = 180;
-overheatTimer = overheatTime;
 
 soundTimer = 20;
 
@@ -92,7 +99,8 @@ redColour = make_colour_rgb(151,0,0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (i &lt; 4)
+            <string>///Lower wall recursively
+if (i &lt; 4)
 {
     inst1 = collision_point(xWall + 64*i, 2752, obj_wall, false, true);
     inst2 = collision_point(xWall + 64*i, 2816, obj_wall, false, true);
@@ -125,7 +133,8 @@ redColour = make_colour_rgb(151,0,0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for (h = 0; h &lt; ds_list_size(enemyList); h++)
+            <string>///destroy all spawned enemies
+for (h = 0; h &lt; ds_list_size(enemyList); h++)
 {
     inst = ds_list_find_value(enemyList,h);
     if (instance_exists(inst))
@@ -160,24 +169,16 @@ enemyList = ds_list_create();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (dead == false)
+            <string>///Reset back to full after hero dies
+if (dead == false)
 {
-    alarm[1] = 1;
+    alarm[1] = 1; //destroy all spawned enemies
     spriteObj.visible = true;
     hp = hpMax;
     
     combatState = "reload";
-
-    attackTime = 180;
-    attackTimer = 60;
     numAttacks = 0;
-    numAttacksTillStun = 3;
-    attackList = ds_list_create();
-    ds_list_add(attackList,"missiles","summon","laser");
     missileNum = 3;
-
-    overheatTime = 180;
-    overheatTimer = overheatTime;
 }
 </string>
           </argument>
@@ -242,16 +243,47 @@ switch(combatState)
 {
     case ("stand"):
     {
+        //Stop sizzle sound if playing
+        if(audio_is_playing(snd_sizzle))
+                audio_stop_sound(snd_sizzle);
+    
+        //Set attack reload timer
+        dmgTaken = hpMax - hp;
+        attackTimer = maxAttackTime - (dmgTaken * atkTimerScale);
+    
         if (numAttacks &lt; numAttacksTillStun)
         {
+            //Need to attack more before overheating    
+        
             randomize()
-            combatState = ds_list_find_value(attackList,floor(random(3)));
-            attackTimer = attackTime;
+            
+            //Make next attack unique (no same move in a row)
+            nextAttack = ds_list_find_value(attackList,floor(random(3)));
+            while(nextAttack == lastAttack)
+            {
+                randomize()
+                nextAttack = ds_list_find_value(attackList,floor(random(3)));
+            }
+            
+            combatState = nextAttack
+            lastAttack = nextAttack
+            
             numAttacks++;
         }
         else
         {
-            numAttacks = 0;
+            //Start overheat
+            
+            numAttacks = 0; //reset num attacks for next cycle
+            
+            //Set overheat timer
+            dmgTaken = hpMax - hp;
+            overheatTimer = overheatTime - (dmgTaken * overheatTimerScale);
+            
+            //Play sizzle
+            if(!audio_is_playing(snd_sizzle))
+                audio_play_sound(snd_sizzle,5,true);
+            
             combatState = "overheat";
         }
         break;
@@ -272,23 +304,26 @@ switch(combatState)
         {
             missile5 = instance_create(xCent+2, yCent - 1, obj_missile);
         }
+        
         combatState = "reload";
         break;
     }
     
     case ("summon"):
     {
-        summon1 = instance_create(11264,2688,obj_enemy);
-        summon2 = instance_create(10240,2688,obj_enemy);
-        summon1.dropRate = -1;
-        summon2.dropRate = -1;
-        ds_list_add(enemyList, summon1, summon2);
+        summon1 = instance_create(11264,2688,obj_enemy_spawning);
+        summon1.temp = true;
+        summon2 = instance_create(10240,2688,obj_enemy_spawning);
+        summon2.temp = true;
         if (missileNum &gt;= 4.5)
         {
-            summon3 = instance_create(x+32,yCent,obj_enemy);
-            summon3.dropRate = -1;
-            ds_list_add(enemyList, summon3);
+            summon3 = instance_create(x+32,yCent,obj_enemy_spawning);
+            summon3.temp = true;
         }
+        
+        //Now that enemies have telegraph time, give player time to kill them
+        attackTimer += 32;
+        
         combatState = "reload";
         break;
     }
@@ -305,6 +340,7 @@ switch(combatState)
         {
             laser3.image_angle = 270;
         }
+        
         combatState = "reload";
         break;
     }
@@ -318,8 +354,8 @@ switch(combatState)
         else
         {
             combatState = "stand";
-            attackTimer = attackTime;
         }
+        break;
     }
     
     case ("overheat"):
@@ -331,8 +367,8 @@ switch(combatState)
         else
         {
             combatState = "stand";
-            overheatTimer = overheatTime;
         }
+        break;
     }
 }
 }
@@ -360,6 +396,9 @@ switch(combatState)
             <kind>1</kind>
             <string>if (ds_list_find_index(other.enemiesHitList,id) &lt; 0) &amp;&amp; (dead == false)
 {
+    if(audio_is_playing(snd_sizzle))
+        audio_stop_sound(snd_sizzle);
+
     if (combatState == "overheat")
     {
         ds_list_add(other.enemiesHitList,id);
@@ -371,12 +410,15 @@ switch(combatState)
             spriteObj.visible = true;
             obj_hero.canMove = false;
         }
-        attackTime -= 20;
-        overheatTime -= 20;
-        missileNum += 0.5;
-        combatState = "stand";
-        overheatTimer = overheatTime;
-        audio_play_sound(snd_enemyDeath,5,false);
+        else
+        {
+            //Still alive
+            missileNum += 0.5;
+        
+            numAttacks = 0;
+            combatState = "stand";
+            audio_play_sound(snd_enemyDeath,5,false);
+        }
     }
     else
     {

@@ -3,7 +3,17 @@ switch(boostState)
 {
     default:
     {
-
+        if(keyboardBoost == false)
+        {
+            dir = point_direction(x, y, mouse_x, mouse_y);
+            dir /= 45;
+            dir = round(dir);
+            dir = dir*45;
+        }
+        else
+        {
+    
+    
             if (keyboard_check(global.key_up)) //90
             {
                 if (keyboard_check(global.key_down)) //Up and Down
@@ -57,4 +67,5 @@ switch(boostState)
             }
             
     }
+}
 }

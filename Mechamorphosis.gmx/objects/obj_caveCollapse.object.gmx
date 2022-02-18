@@ -26,8 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>go = false;
-hSpdOn = 6;
-hSpdOff = 10;
+hSpdOn = 5;
+hSpdOff = 11;
 hSpd = 8;
 hSpdAccel = 0.2;
 startX = x;

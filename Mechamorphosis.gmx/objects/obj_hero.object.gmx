@@ -40,6 +40,7 @@ if (room == rm_lv1)
 lrState = "stand";
 jumpState = "air";
 boostState = "charged";
+keyboardBoost = true;
 
 //Variables
 hSpd = 0;
@@ -110,7 +111,7 @@ if (!file_exists("config.ini"))
     global.key_left = ord('A');
     global.key_down = ord('S');
     global.key_right = ord('D');
-    global.bestTime = 18000;
+    global.bestTime = 180000;
 }
 canMove = true;
 
@@ -258,13 +259,11 @@ if (view_y1 &gt; view_y)
 if (view_xview != view_x1)
 {
     roomMoving = "true";
-    show_debug_message("WE MOVIN!");
     view_xview = view_x1;
 }
 if (view_yview != view_y1)
 {
     roomMoving = "true";
-    show_debug_message("WE MOVIN!");
     view_yview = view_y1;
 }
 }
@@ -319,7 +318,7 @@ if (respawning = "true")
             respawning = "false";
             spriteObj.visible = true;
             speed = 0;
-            vSpd = 0;
+            vSpd = 5;
             hSpd = 0;
             x = lastGroundX;
         }
@@ -360,10 +359,23 @@ switch(boostState)
         if ((keyboard_check_pressed(global.key_boost))&amp;&amp;(hasBoost == "true"))
         {
             boostState = "windup";
+            keyboardBoost = true;
             windupTimer = windupMax;
             hSpd = 0;
             vSpd = 0;
             audio_play_sound(snd_boost,5,false);
+            break;
+        }
+        
+        if ((mouse_check_button_pressed(mb_right))&amp;&amp;(hasBoost == "true"))
+        {
+            boostState = "windup";
+            keyboardBoost = !obj_dashDir.visible;
+            windupTimer = windupMax;
+            hSpd = 0;
+            vSpd = 0;
+            audio_play_sound(snd_boost,5,false);
+            break;
         }
         break;
     }
@@ -387,10 +399,16 @@ switch(boostState)
     }
     case ("boosting"):
     {
-        if (collision_rectangle(hbL,hbT,hbR,hbB,obj_lantern,false,false))
+        if (boostTimer &lt;= (boostDuration - 1))
         {
-            boostReset = "true";
+            inst2 = (collision_rectangle(hbL,hbB,hbR,hbB-vSpd + 1,obj_platform,false,false));
+            inst =  collision_rectangle(hbL,hbB+1,hbR,hbB+1,obj_wall,false,true)
+            if((inst != noone) || (inst2 != noone))
+            {
+                boostReset = "true";      
+            }
         }
+    
         if (boostTimer &lt;= 0)
         {
             var inst = collision_rectangle(hbL,hbB+1,hbR,hbB+1,obj_wall,false,false)
@@ -415,11 +433,8 @@ switch(boostState)
         {
             instance_create(x + (sprite_width/2),y + (sprite_height/2),obj_dashFadeout);
             
-            show_debug_message(dir);
             vSpd = boostSpeed*dsin(dir);
             hSpd = boostSpeed*dcos(dir);
-            show_debug_message("vSpd = "+string(vSpd));
-            show_debug_message("hSpd = "+string(hSpd));
             boostTimer--;
         }
         break;
@@ -477,13 +492,10 @@ if  (((boostState == "recharge")||(boostState = "charged")) || ((onGround = "tru
             if ((inst2 != noone) &amp;&amp; (vSpd &gt;0))
             {
                 inst2 = noone;      
-                if (boostState == "recharge")
-                {
-                    boostState = "charged";
-                }
+                boostState = "charged";
             }
             inst =  collision_rectangle(hbL,hbB+1,hbR,hbB+1,obj_wall,false,true)
-            if ((inst == noone)&amp;&amp;(inst2 == noone)) //not on ground
+            if ((inst == noone)&amp;&amp;(inst2 == noone)) 
             {
                 if (ghostJumpTimer&lt;=0)
                 {
@@ -521,7 +533,7 @@ if  (((boostState == "recharge")||(boostState = "charged")) || ((onGround = "tru
                 audio_play_sound(snd_jump,5,false);
                 if (boostState == "boosting")
                 {
-                    boostState = "recharge";
+                    boostState = "charged";
                     jumpBoostFrictTimer = jumpBoostFrictMax;
                     show_debug_message("boostJump");
                 }
@@ -560,10 +572,7 @@ if  (((boostState == "recharge")||(boostState = "charged")) || ((onGround = "tru
             {
                 vSpd = (hbB+1) - inst.y;
                 jumpState = "ground";
-                if (boostState == "recharge")
-                {
-                    boostState = "charged";
-                }
+                boostState = "charged";
             }
             break;
         }
@@ -590,7 +599,7 @@ if (((boostState == "recharge")||(boostState = "charged"))&amp;&amp;(intro == fa
                 }
             }
         }
-        else
+        else //In air
         {
             if (hSpd &gt; 0)
             {
@@ -609,13 +618,15 @@ if (((boostState == "recharge")||(boostState = "charged"))&amp;&amp;(intro == fa
         {
             case("left"):
             {
-                hSpd = max(0-maxHSpd,hSpd-hAccel);
+                if(hSpd &gt; 0-maxHSpd) //can accelerate more to the left
+                    hSpd = max(0-maxHSpd,hSpd-hAccel);
                 break;
             }
     
             case("right"):
             {
-                hSpd = min(hSpd+hAccel,maxHSpd);
+                if(hSpd &lt; maxHSpd) //can accelerate more to the left
+                    hSpd = min(hSpd+hAccel,maxHSpd);
                 break;
             }
         }
@@ -708,6 +719,8 @@ else //Down
     }
 }
 
+vSpd = max(vSpd, -40);
+
 x+=hSpd;
 y-=vSpd;
 spriteObj.x = x + (sprite_width/2);
@@ -734,7 +747,12 @@ spriteObj.y = y + (sprite_height/2);
           <argument>
             <kind>1</kind>
             <string>///Attack
-if (keyboard_check_pressed(global.key_attack)) &amp;&amp; (canMove)
+if(!canMove)
+{
+  exit;
+}
+  
+if (keyboard_check_pressed(global.key_attack)) || (mouse_check_button_pressed(mb_left))
 {
     if (!instance_exists(obj_hero_attack))
     {
@@ -777,6 +795,46 @@ if (!soundLoop)
         soundLoop = true;;
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_bottomlessPit_invis">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>move_towards_point(lastGroundX,lastGroundY,respawnSpeed);
+
+if (respawning == "false")
+{
+    hp -= 99;
+    audio_play_sound(snd_hit,5,false);
+}
+respawning = "true";
+if (lastGroundX &lt; x)
+{
+    respawnSide = "left";
+}
+else
+{
+    respawnSide = "right";
+}
+checkHpHero();
+obj_hero_sprite.visible = false;
 </string>
           </argument>
         </arguments>

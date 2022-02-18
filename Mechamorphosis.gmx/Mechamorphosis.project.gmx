@@ -15,6 +15,7 @@
     <sound>sound\snd_song2_loop</sound>
     <sound>sound\snd_enemyDeath</sound>
     <sound>sound\snd_clank</sound>
+    <sound>sound\snd_sizzle</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Hero">
@@ -30,6 +31,7 @@
         <sprite>sprites\spr_hero_jump_mech</sprite>
         <sprite>sprites\spr_boost_side</sprite>
         <sprite>sprites\spr_boost_dia</sprite>
+        <sprite>sprites\spr_dashDir</sprite>
       </sprites>
       <sprites name="Human">
         <sprite>sprites\spr_hero_attack</sprite>
@@ -45,6 +47,7 @@
     <sprites name="Buttons">
       <sprite>sprites\spr_button_respawn</sprite>
       <sprite>sprites\spr_button_mute</sprite>
+      <sprite>sprites\spr_button_mouseDash</sprite>
       <sprite>sprites\spr_button_start</sprite>
       <sprite>sprites\spr_button_speedrun</sprite>
       <sprite>sprites\spr_button_control</sprite>
@@ -95,12 +98,14 @@
         <sprite>sprites\spr_boss2_overheat</sprite>
         <sprite>sprites\spr_boss2_explode</sprite>
         <sprite>sprites\spr_laser</sprite>
+        <sprite>sprites\spr_laser_ind</sprite>
         <sprite>sprites\spr_laser_parent</sprite>
         <sprite>sprites\spr_missile</sprite>
       </sprites>
       <sprite>sprites\spr_bushRobot_B</sprite>
       <sprite>sprites\spr_bushRobot_G</sprite>
       <sprite>sprites\spr_bushRobot_hitbox</sprite>
+      <sprite>sprites\spr_bushRobot_spawning</sprite>
     </sprites>
     <sprites name="HUD/Misc">
       <sprite>sprites\spr_heart</sprite>
@@ -129,6 +134,7 @@
     <script>scripts\draw_text_outlined.gml</script>
     <script>scripts\scr_loadGame.gml</script>
     <script>scripts\scr_saveGame.gml</script>
+    <script>scripts\scr_saveControls.gml</script>
     <script>scripts\scr_heroMoveRoom.gml</script>
     <script>scripts\scr_drawKey.gml</script>
   </scripts>
@@ -146,12 +152,14 @@
       <object>objects\obj_boostPowerUp</object>
       <object>objects\obj_dashFadeout</object>
       <object>objects\obj_bossDashFadeout</object>
+      <object>objects\obj_dashDir</object>
     </objects>
     <objects name="Enemies">
       <objects name="Basic Enemies">
         <object>objects\obj_enemy</object>
         <object>objects\obj_enemy_sprite</object>
         <object>objects\obj_heart_pickup</object>
+        <object>objects\obj_enemy_spawning</object>
       </objects>
       <objects name="Boss1">
         <object>objects\obj_boss1</object>
@@ -165,6 +173,7 @@
         <object>objects\obj_boss2_arena_top</object>
         <object>objects\obj_laserParent</object>
         <object>objects\obj_laserBlock</object>
+        <object>objects\obj_laserBlockInd</object>
         <object>objects\obj_missile</object>
       </objects>
     </objects>
@@ -179,6 +188,7 @@
       <object>objects\obj_bgTile</object>
       <object>objects\obj_wall</object>
       <object>objects\obj_bottomlessPit</object>
+      <object>objects\obj_bottomlessPit_invis</object>
       <objects name="Level 1">
         <object>objects\obj_sign1</object>
         <object>objects\obj_sign0</object>
@@ -194,6 +204,7 @@
         <object>objects\obj_lantern</object>
       </objects>
       <object>objects\obj_checkpoint</object>
+      <object>objects\obj_killSpeed</object>
     </objects>
     <objects name="Menu/UI/Misc">
       <object>objects\obj_HUD</object>
@@ -202,7 +213,6 @@
       <object>objects\obj_fadeOut</object>
       <object>objects\obj_heroDead</object>
       <object>objects\obj_persist</object>
-      <object>objects\obj_button_mute</object>
       <objects name="Keys">
         <object>objects\obj_key_up</object>
         <object>objects\obj_key_left</object>
@@ -224,6 +234,7 @@
         <object>objects\obj_button_close</object>
         <object>objects\obj_button_save</object>
         <object>objects\obj_button_credits</object>
+        <object>objects\obj_button_keyboardToggle</object>
       </objects>
       <object>objects\obj_background</object>
     </objects>

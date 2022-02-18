@@ -28,7 +28,7 @@
             <string>audio_play_sound(snd_attack,5,false);
 travelTimer = 8;
 dist = 10;
-distMod = 4;
+distMod = 6;
 
 damage = obj_hero.damage;
 sprite_index = obj_hero.spriteObj.attackSprite;

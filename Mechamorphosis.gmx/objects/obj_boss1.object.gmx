@@ -65,7 +65,7 @@ jumpBoostFrictMax = 20;
 jumpBoostFrictTimer = 0;
 
 //Combat
-hpMax = 10;
+hpMax = 7;
 hp = hpMax;
 damage = 1;
 dead = false;

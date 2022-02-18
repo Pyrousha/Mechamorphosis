@@ -8,7 +8,7 @@ if (!file_exists("config.ini"))
     global.key_left = ord('A');
     global.key_down = ord('S');
     global.key_right = ord('D');
-    global.bestTime = 18000;
+    global.bestTime = 180000;
     global.showTimer = false;
     
     ini_open("config.ini");
@@ -16,7 +16,7 @@ if (!file_exists("config.ini"))
     //Speedrun
     ini_write_real("speedrun","frames",0);
     ini_write_real("speedrun","seconds",0);
-    ini_write_real("speedrun","mins",5);
+    ini_write_real("speedrun","mins",50);
     ini_write_real("speedrun","bestTime",global.bestTime);
     
     //Controls
@@ -41,8 +41,8 @@ else
     global.key_attack = ini_read_real("controls","attack",ord('J'));
     global.key_boost = ini_read_real("controls","boost",ord('K'));
     
-    global.bestTime = ini_read_real("speedrun","bestTime",18000);
-    global.mins = ini_read_real("speedrun","mins",5);
+    global.bestTime = ini_read_real("speedrun","bestTime",180000);
+    global.mins = ini_read_real("speedrun","mins",50);
     global.seconds = ini_read_real("speedrun","seconds",0);
     global.frames = ini_read_real("speedrun","frames",0);
     

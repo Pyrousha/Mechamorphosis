@@ -15,6 +15,7 @@ if (enemy.hp <= 0) && (enemy.dead == false)
     }
     enemy.spriteObj.visible = false;
     enemy.dead = true;
+    enemy.alarm[2] = 1;
 }
 else
 {

@@ -66,7 +66,7 @@ ignoreInput = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if ((keyboard_check_pressed(vk_space)) &amp;&amp; (ignoreInput == false))
+            <string>if (((keyboard_check_pressed(vk_space)) || (mouse_check_button_pressed(mb_left))) &amp;&amp; (ignoreInput == false))
 {
     switch(state)
     {

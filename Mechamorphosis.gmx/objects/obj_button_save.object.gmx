@@ -62,7 +62,7 @@ textColour = make_colour_rgb(38,27,252);
         global.key_attack = obj_key_attack.key;
         global.key_boost = obj_key_boost.key;
         
-        scr_saveGame();
+        scr_saveControls();
         room_goto(rm_menu);
     }
 }
