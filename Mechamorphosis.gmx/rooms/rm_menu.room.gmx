@@ -56,7 +56,7 @@
   </views>
   <instances>
     <instance objName="obj_button_start" x="512" y="192" name="inst_CB6086D4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_button_exit" x="512" y="476" name="inst_0292887A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_button_exit" x="512" y="480" name="inst_0292887A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="-64" y="-64" name="inst_FE6D2178" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="0" y="-64" name="inst_512B7CDF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_wall" x="64" y="-64" name="inst_5442086C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

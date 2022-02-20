@@ -95,7 +95,7 @@ switch(state)
     {
         if (i &gt;= ds_list_size(textList) - 1)
         {
-            obj_button_exit.image_alpha = opa;
+            obj_button_menu.image_alpha = opa;
             obj_button_respawn.image_alpha = opa;
         }
         opa = min(1,opa+opaIn);

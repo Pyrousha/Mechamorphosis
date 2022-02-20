@@ -55,6 +55,7 @@
       <sprite>sprites\spr_button_save</sprite>
       <sprite>sprites\spr_button_options</sprite>
       <sprite>sprites\spr_button_exit</sprite>
+      <sprite>sprites\spr_button_menu</sprite>
       <sprite>sprites\spr_button_controls</sprite>
       <sprite>sprites\spr_button_close</sprite>
       <sprite>sprites\spr_keyController</sprite>
@@ -230,6 +231,7 @@
         <object>objects\obj_button_respawn</object>
         <object>objects\obj_button_options</object>
         <object>objects\obj_button_exit</object>
+        <object>objects\obj_button_menu</object>
         <object>objects\obj_button_controls</object>
         <object>objects\obj_button_close</object>
         <object>objects\obj_button_save</object>

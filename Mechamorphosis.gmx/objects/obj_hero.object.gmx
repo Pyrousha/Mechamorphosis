@@ -64,7 +64,7 @@ gravDown = 1.35;
 jumpBoostFrictMax = 20;
 jumpBoostFrictTimer = 0;
 
-ghostJumpMax = 4;
+ghostJumpMax = 2;
 ghostJumpTimer = ghostJumpMax;
 bufferJump = "false";
 
@@ -392,8 +392,8 @@ switch(boostState)
             boostState = "boosting";
             
             
-            if ((dir == 0) || (dir == 180)) //horizontal boost is better for some reason
-                boostTimer = round(boostDuration*hBoostMult);
+            //if ((dir == 0) || (dir == 180)) //horizontal boost is better for some reason
+            boostTimer = round(boostDuration*hBoostMult);
             
             //Boostjump after just barely jumping
             if ((dir == 0) || (dir == 180) || (dir == 45) || (dir = 135))
@@ -407,7 +407,7 @@ switch(boostState)
                         dir = 180;
                 
                     //Make sure this gets set in the case of dir being 45 or 135
-                    boostTimer = round(boostDuration*hBoostMult);
+                    //boostTimer = round(boostDuration*hBoostMult);
                 
                     bufferJump = "false";
                     jumpState = "air";

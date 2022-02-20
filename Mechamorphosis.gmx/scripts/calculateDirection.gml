@@ -5,7 +5,10 @@ switch(boostState)
     {
         if(keyboardBoost == false)
         {
-            dir = point_direction(x, y, mouse_x, mouse_y);
+            screenX = view_xview + view_wview * 0.5
+            screenY = view_yview + view_hview * 0.5
+
+            dir = point_direction(screenX, screenY, mouse_x, mouse_y);
             dir /= 45;
             dir = round(dir);
             dir = dir*45;

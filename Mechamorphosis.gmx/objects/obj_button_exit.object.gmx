@@ -30,14 +30,7 @@
     exit;
 }
 
-if room == rm_credits
-{
-    room = rm_menu
-}
-else
-{
-    game_end();
-}
+game_end();
 </string>
           </argument>
         </arguments>

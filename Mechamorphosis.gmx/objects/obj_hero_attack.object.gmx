@@ -36,19 +36,38 @@ sprite_index = obj_hero.spriteObj.attackSprite;
 image_speed = 0;
 imgSpd = 1;
 
-switch (obj_hero.spriteObj.image_xscale)
+//if(obj_dashDir.visible) //using mouse boost dir
+if(false)
 {
-    case 1:
+    if((obj_dashDir.image_angle &lt;= 90) || (obj_dashDir.image_angle &gt;270))
     {
+        //facing right
         image_xscale=1;
         x = obj_hero.x+obj_hero.sprite_width+dist;
-        break;
     }
-    case -1:
+    else
     {
+        //facing left
         image_xscale=-1;
         x = obj_hero.x-dist;
-        break;
+    }
+}
+else
+{
+    switch (obj_hero.spriteObj.image_xscale)
+    {
+        case 1:
+        {
+            image_xscale=1;
+            x = obj_hero.x+obj_hero.sprite_width+dist;
+            break;
+        }
+        case -1:
+        {
+            image_xscale=-1;
+            x = obj_hero.x-dist;
+            break;
+        }
     }
 }
 enemiesHitList = ds_list_create();
