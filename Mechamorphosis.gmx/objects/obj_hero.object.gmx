@@ -68,6 +68,9 @@ ghostJumpMax = 4;
 ghostJumpTimer = ghostJumpMax;
 bufferJump = "false";
 
+boostJumpMax = 4;
+boostJumpTimer = boostJumpMax;
+
 //Combat
 hpMax = 5;
 hp = hpMax;
@@ -318,7 +321,7 @@ if (respawning = "true")
             respawning = "false";
             spriteObj.visible = true;
             speed = 0;
-            vSpd = 5;
+            vSpd = -5;
             hSpd = 0;
             x = lastGroundX;
         }
@@ -384,12 +387,45 @@ switch(boostState)
         if (windupTimer &lt;=0)
         {
             calculateDirection();
-            if ((dir == 0) || (dir == 180))
-            {
-                boostTimer = round(boostDuration*hBoostMult);
-            }
-            boostState = "boosting";
+            
             boostReset = "false"
+            boostState = "boosting";
+            
+            
+            if ((dir == 0) || (dir == 180)) //horizontal boost is better for some reason
+                boostTimer = round(boostDuration*hBoostMult);
+            
+            //Boostjump after just barely jumping
+            if ((dir == 0) || (dir == 180) || (dir == 45) || (dir = 135))
+            {
+                if (boostJumpTimer &gt; 0)
+                {
+                    if(dir == 45)
+                        dir = 0;
+                        
+                    if(dir == 135)
+                        dir = 180;
+                
+                    //Make sure this gets set in the case of dir being 45 or 135
+                    boostTimer = round(boostDuration*hBoostMult);
+                
+                    bufferJump = "false";
+                    jumpState = "air";
+                    
+                    vSpd = jumpSpeed;
+                    hSpd = boostSpeed*dcos(dir);
+                    
+                    boostState = "charged";
+                    if(jumpBoostFrictTimer &lt;= 0)
+                    {
+                        jumpBoostFrictTimer = jumpBoostFrictMax;
+                    }
+                    show_debug_message("boostJump");
+                    instance_create(x + (sprite_width/2),y + (sprite_height/2),obj_dashFadeout);
+            
+                    boostJumpTimer = 0;
+                }
+            }
         }
         else
         {
@@ -401,6 +437,7 @@ switch(boostState)
     {
         if (boostTimer &lt;= (boostDuration - 1))
         {
+            //Started boost on ground, give boost back after curr one ends
             inst2 = (collision_rectangle(hbL,hbB,hbR,hbB-vSpd + 1,obj_platform,false,false));
             inst =  collision_rectangle(hbL,hbB+1,hbR,hbB+1,obj_wall,false,true)
             if((inst != noone) || (inst2 != noone))
@@ -411,6 +448,7 @@ switch(boostState)
     
         if (boostTimer &lt;= 0)
         {
+            //End boost
             var inst = collision_rectangle(hbL,hbB+1,hbR,hbB+1,obj_wall,false,false)
             if (inst == noone)
             {
@@ -431,6 +469,7 @@ switch(boostState)
         }
         else
         {
+            //Continue boost
             instance_create(x + (sprite_width/2),y + (sprite_height/2),obj_dashFadeout);
             
             vSpd = boostSpeed*dsin(dir);
@@ -494,8 +533,9 @@ if  (((boostState == "recharge")||(boostState = "charged")) || ((onGround = "tru
                 inst2 = noone;      
                 boostState = "charged";
             }
+            
             inst =  collision_rectangle(hbL,hbB+1,hbR,hbB+1,obj_wall,false,true)
-            if ((inst == noone)&amp;&amp;(inst2 == noone)) 
+            if ((inst == noone)&amp;&amp;(inst2 == noone)) //falling
             {
                 if (ghostJumpTimer&lt;=0)
                 {
@@ -527,6 +567,8 @@ if  (((boostState == "recharge")||(boostState = "charged")) || ((onGround = "tru
             }
             if (keyboard_check_pressed(global.key_jump) || (bufferJump == "true")) &amp;&amp; (canMove)
             {
+                boostJumpTimer = boostJumpMax;
+            
                 bufferJump = "false";
                 jumpState = "air";
                 vSpd = jumpSpeed;
@@ -543,6 +585,9 @@ if  (((boostState == "recharge")||(boostState = "charged")) || ((onGround = "tru
     
         case("air"):
         {
+        
+            if(boostJumpTimer &gt;= 0) //see if player recently left ground
+                boostJumpTimer--;
         
             if (vSpd &lt;= 0) //falling
             {
@@ -634,18 +679,22 @@ if (((boostState == "recharge")||(boostState = "charged"))&amp;&amp;(intro == fa
     else //jumpBoosting
     {
         jumpBoostFrictTimer --;
+        
+        instance_create(x + (sprite_width/2),y + (sprite_height/2),obj_dashFadeout);
+        
+        //apply friction
         switch(lrState)
         {
             case("left"):
             {
-                if (hSpd &gt; 0)
+                if (hSpd &gt; 0) //moving right, nudge left
                 {
                     hSpd = max(0, hSpd - hAccel);
                 }
                 break;
             }
     
-            case("right"):
+            case("right"): //moving left, nudge right
             {
                 if (hSpd &lt; 0)
                 {
@@ -654,6 +703,7 @@ if (((boostState == "recharge")||(boostState = "charged"))&amp;&amp;(intro == fa
                 break;
             }
         }
+            
         if (hSpd == 0)
         {
             jumpBoostFrictTimer = 0;

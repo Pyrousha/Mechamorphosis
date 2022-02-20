@@ -26,10 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>go = false;
-hSpdOn = 5;
-hSpdOff = 11;
+hSpdOn = 3.75;
+hSpdOff = 10;
 hSpd = 8;
-hSpdAccel = 0.2;
+hSpdAccel = 0.15;
 startX = x;
 </string>
           </argument>

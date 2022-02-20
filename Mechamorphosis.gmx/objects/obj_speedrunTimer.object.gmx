@@ -2,7 +2,7 @@
 <object>
   <spriteName>spr_speedrun</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
+  <visible>-1</visible>
   <depth>-1000</depth>
   <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -30,6 +30,8 @@ enabled = true;
 mins = 0;
 seconds = 0;
 frames = 0;
+
+beInvis = false;
 </string>
           </argument>
         </arguments>
@@ -52,7 +54,9 @@ frames = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room == rm_menu)&amp;&amp;(visible)
+            <string>beInvis = false;
+
+if (room == rm_menu)&amp;&amp;(visible)
 {
     m = global.mins;
     mstr = string(m);
@@ -72,8 +76,8 @@ frames = 0;
     {
         fstr = "0"+string(f);
     }
-    obj_persist.text = ("Best Time: " + mstr + ":"+ sstr+":"+fstr);
-    obj_persist.alarm[0] = 360;
+    //obj_persist.text = ("Best Time: " + mstr + ":"+ sstr+":"+fstr);
+    //obj_persist.alarm[0] = 360;
 }
 if (room == rm_lv1)
 {
@@ -86,7 +90,7 @@ if (room == rm_ending)
 {
     counting = false;
     var file;
-    time = 360*mins+60*seconds+frames;
+    time = 3600*mins+60*seconds+frames;
     if (time &lt; global.bestTime)
     {
         obj_persist.text = "New best time!";
@@ -121,7 +125,10 @@ if (room == rm_ending)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (counting)
+            <string>if ((beInvis) || (room == rm_credits))
+    exit;
+
+if (counting)
 {
     frames++;
     if (frames &gt;= 60)
@@ -163,7 +170,25 @@ image_alpha = 1;
 x = view_xview + view_wview - 1;
 y = view_yview + view_hview - 1;
 
-draw_text(x, y, string(mins)+":"+secondsStr+":"+framesStr);
+if(room != rm_menu)
+{
+    draw_text(x, y, string(mins)+":"+secondsStr+":"+framesStr);
+}
+else
+{
+    //Room is menu
+    
+    if(global.mins == 50)
+    {
+        //Game not beaten yet
+        draw_text(x, y, "");
+    }
+    else
+    {
+        //Game beaten, show best time on menu
+        draw_text(x, y, ("Best Time: " + mstr + ":"+ sstr+":"+fstr));
+    }
+}
 //depth *= 10;
 //show_debug_message("x,y: "+string(x)+", "+string(y));
 </string>

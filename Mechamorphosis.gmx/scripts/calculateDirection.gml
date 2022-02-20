@@ -66,6 +66,15 @@ switch(boostState)
                 break;
             }
             
+            //not pressing anything
+            if (obj_hero_sprite.image_xscale = 1)
+            {
+                dir = 0;
+            }
+            else
+            {
+                dir = 180;
+            }
+        }
     }
-}
 }

@@ -112,7 +112,7 @@
       <sprite>sprites\spr_HUD</sprite>
       <sprite>sprites\spr_wasd_indicator</sprite>
       <sprite>sprites\spr_speedrun</sprite>
-      <sprite>sprites\spr_background</sprite>
+      <sprite>sprites\spr_MenuBG</sprite>
     </sprites>
     <sprites name="Powerups/Upgrades">
       <sprite>sprites\spr_boostPowerUp</sprite>

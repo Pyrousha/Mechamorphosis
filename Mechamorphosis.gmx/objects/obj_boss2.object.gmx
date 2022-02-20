@@ -312,9 +312,12 @@ switch(combatState)
     case ("summon"):
     {
         summon1 = instance_create(11264,2688,obj_enemy_spawning);
-        summon1.temp = true;
         summon2 = instance_create(10240,2688,obj_enemy_spawning);
+        
+        //Destroy summons after being killed by player (don't want them to respawn)
+        summon1.temp = true;
         summon2.temp = true;
+        
         if (missileNum &gt;= 4.5)
         {
             summon3 = instance_create(x+32,yCent,obj_enemy_spawning);
@@ -340,6 +343,9 @@ switch(combatState)
         {
             laser3.image_angle = 270;
         }
+        
+        //Laser has more startup, so give player more time afterwards
+        attackTimer += 5;
         
         combatState = "reload";
         break;
@@ -394,7 +400,8 @@ switch(combatState)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (ds_list_find_index(other.enemiesHitList,id) &lt; 0) &amp;&amp; (dead == false)
+            <string>///Take damage
+if (ds_list_find_index(other.enemiesHitList,id) &lt; 0) &amp;&amp; (dead == false)
 {
     if(audio_is_playing(snd_sizzle))
         audio_stop_sound(snd_sizzle);

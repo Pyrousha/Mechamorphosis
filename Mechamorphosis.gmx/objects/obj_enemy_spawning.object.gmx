@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>///Spawn enemy
 enemy = instance_create(x,y,obj_enemy);
+enemy.hp /= 2;
+enemy.temp = true;
 enemy.dropRate = 0.1;
 visible = false;
 

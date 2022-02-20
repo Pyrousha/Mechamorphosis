@@ -2,10 +2,13 @@
 ini_open("config.ini");
 
 //Speedrun
-ini_write_real("speedrun","frames",global.frames);
-ini_write_real("speedrun","seconds",global.seconds);
-ini_write_real("speedrun","mins",global.mins);
-ini_write_real("speedrun","bestTime",global.bestTime);
+if(global.bestTime > 0) //this keeps being set to 0 for some reason, da heck bro!!
+{
+    ini_write_real("speedrun","frames",global.frames);
+    ini_write_real("speedrun","seconds",global.seconds);
+    ini_write_real("speedrun","mins",global.mins);
+    ini_write_real("speedrun","bestTime",global.bestTime);
+}
     
 //Controls
 ini_write_real("controls","boost",global.key_boost);

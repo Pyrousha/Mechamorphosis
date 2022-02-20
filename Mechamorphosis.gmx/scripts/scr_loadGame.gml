@@ -9,6 +9,9 @@ if (!file_exists("config.ini"))
     global.key_down = ord('S');
     global.key_right = ord('D');
     global.bestTime = 180000;
+    global.mins = 50;
+    global.seconds = 0;
+    global.frames = 0;
     global.showTimer = false;
     
     ini_open("config.ini");
