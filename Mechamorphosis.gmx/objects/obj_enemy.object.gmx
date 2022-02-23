@@ -35,6 +35,8 @@ startY = y;
 //Stats
 //Ground Movement
 maxHSpd = 5;
+pauseTime = 25;
+paused = false;
 
 //Combat
 hpMax = 1;
@@ -83,6 +85,30 @@ if(instance_exists(spriteObj))
 {
     instance_destroy(spriteObj);
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="9">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Set paused to false
+paused = false;
 </string>
           </argument>
         </arguments>
@@ -210,7 +236,7 @@ if (isInView())
             <kind>1</kind>
             <string>///Movement, input, and collision
 
-if (obj_hero.roomMoving == "true") || (isInView() == false)
+if (obj_hero.roomMoving == "true") || (isInView() == false || (paused))
 {
     spriteObj.image_speed = 0;
     exit;
@@ -237,6 +263,9 @@ round(vSpd);
 if ((!collision_point(hbL+hSpd,hbB+1,obj_wall,false,true)) || (!collision_point(hbR+hSpd,hbB+1,obj_wall,false,true)) || (hbR+hSpd &gt; view_xview + view_wview) || (x+hSpd&lt;view_xview))
 {
     hSpd = 0-hSpd;
+    
+    paused = true;
+    alarm[9] = pauseTime
 }
 
 //Left
@@ -248,6 +277,9 @@ if (inst!=noone)
     {
         hSpd = maxHSpd;
     }
+    
+    paused = true;
+    alarm[9] = pauseTime
 }
 else
 {
@@ -260,6 +292,9 @@ else
         {
             hSpd = 0-maxHSpd;
         }
+        
+        paused = true;
+        alarm[9] = pauseTime
     }
 }
 
@@ -278,6 +313,9 @@ else //Down
         vSpd = (hbB+1) - inst.y;
     }
 }
+
+if(paused)
+    exit;
 
 x+=hSpd;
 y-=vSpd;
