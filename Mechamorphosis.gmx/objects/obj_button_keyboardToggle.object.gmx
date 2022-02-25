@@ -78,8 +78,10 @@ if (room != rm_menu)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(!instance_exists(obj_dashDir))
+            <string>if(room != rm_lv1 || room != rm_lv2)
+{
     exit;
+}
 
 x = view_xview;
 y = view_yview + view_hview - sprite_height;

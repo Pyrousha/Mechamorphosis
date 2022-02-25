@@ -120,6 +120,7 @@ canMove = true;
 
 //Sprite
 spriteObj = instance_create(x,y,obj_hero_sprite);
+//boostIndicatorObj = instance_create(x,y,obj_hero_boostChargeIndicator);
 image_speed = 0.25;
 
 //Respawn
@@ -324,6 +325,7 @@ if (respawning = "true")
             vSpd = -5;
             hSpd = 0;
             x = lastGroundX;
+            y = lastGroundY
         }
     }
     exit;
@@ -775,7 +777,8 @@ x+=hSpd;
 y-=vSpd;
 spriteObj.x = x + (sprite_width/2);
 spriteObj.y = y + (sprite_height/2);
-
+//boostIndicatorObj.x = x + (sprite_width/2);
+//boostIndicatorObj.y = y + (sprite_height/2);
 </string>
           </argument>
         </arguments>

@@ -7760,7 +7760,6 @@
     <instance objName="obj_enemy" x="14144" y="3072" name="inst_FAF439DD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_enemy" x="13696" y="2688" name="inst_0C197867" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_enemy" x="13184" y="2688" name="inst_FEDF5C21" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_enemy" x="13376" y="2688" name="inst_E4D09B89" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_enemy" x="12992" y="2496" name="inst_9E7057A6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_enemy" x="12800" y="2176" name="inst_26D968A3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_enemy" x="12416" y="1664" name="inst_71CEFCBE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -7768,7 +7767,6 @@
     <instance objName="obj_enemy" x="13440" y="1344" name="inst_D8644CA1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_enemy" x="13632" y="1344" name="inst_49271BF1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_enemy" x="13824" y="1344" name="inst_B5E1A1E8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_enemy" x="13312" y="1344" name="inst_C23AB08A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_enemy" x="13184" y="1344" name="inst_10A1F2F6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_enemy" x="14080" y="1152" name="inst_492F3508" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_enemy" x="14272" y="1152" name="inst_4EB89895" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -8099,6 +8097,7 @@
     <instance objName="obj_bottomlessPit" x="14720" y="5248" name="inst_8FD83815" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_bottomlessPit" x="14784" y="5248" name="inst_FCD7A30B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_bottomlessPit" x="14848" y="5248" name="inst_7D7B70B4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_invisWall" x="14976" y="1152" name="inst_CF4202C2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

@@ -43,6 +43,7 @@
         <sprite>sprites\spr_hero_16</sprite>
         <sprite>sprites\spr_hero_32</sprite>
       </sprites>
+      <sprite>sprites\spr_boostChargedAnim</sprite>
     </sprites>
     <sprites name="Buttons">
       <sprite>sprites\spr_button_respawn</sprite>
@@ -149,6 +150,7 @@
     <objects name="Hero">
       <object>objects\obj_hero</object>
       <object>objects\obj_hero_sprite</object>
+      <object>objects\obj_hero_boostChargeIndicator</object>
       <object>objects\obj_hero_attack</object>
       <object>objects\obj_boostPowerUp</object>
       <object>objects\obj_dashFadeout</object>
@@ -188,6 +190,7 @@
       <object>objects\obj_platform</object>
       <object>objects\obj_bgTile</object>
       <object>objects\obj_wall</object>
+      <object>objects\obj_invisWall</object>
       <object>objects\obj_bottomlessPit</object>
       <object>objects\obj_bottomlessPit_invis</object>
       <objects name="Level 1">

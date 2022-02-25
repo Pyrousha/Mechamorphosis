@@ -236,16 +236,23 @@ if (isInView())
             <kind>1</kind>
             <string>///Movement, input, and collision
 
-if (obj_hero.roomMoving == "true") || (isInView() == false || (paused))
+midX = x+sprite_width/2
+midY = y+sprite_height/2
+
+//If too far off screen
+if ((midX &gt; view_xview + view_wview*1.5) || (midX &lt; view_xview - view_wview*0.5) || (midY &gt; view_yview + view_hview*1.5) || (midY &lt; view_yview - view_hview*0.5))
 {
     spriteObj.image_speed = 0;
     exit;
 }
-else
+
+if ((obj_hero.roomMoving == "true") || (paused))
 {
-    spriteObj.image_speed = image_speed;
+    spriteObj.image_speed = 0;
+    exit;
 }
 
+spriteObj.image_speed = image_speed;
 
 hbL = x;
 hbR = x+sprite_width-1;
@@ -260,12 +267,44 @@ round(vSpd);
 
 //Horizontal Collision
 //Check off edge
-if ((!collision_point(hbL+hSpd,hbB+1,obj_wall,false,true)) || (!collision_point(hbR+hSpd,hbB+1,obj_wall,false,true)) || (hbR+hSpd &gt; view_xview + view_wview) || (x+hSpd&lt;view_xview))
+if ((!collision_point(hbL+hSpd,hbB+1,obj_wall,false,true)) || (!collision_point(hbR+hSpd,hbB+1,obj_wall,false,true)))
 {
     hSpd = 0-hSpd;
     
     paused = true;
     alarm[9] = pauseTime
+}
+
+//Left invisWall
+var inst = collision_rectangle(hbL+hSpd,hbT,hbL,hbB,obj_invisWall,false,true);
+if (inst!=noone)
+{
+    hSpd = (inst.x+inst.sprite_width)-x;
+    if (hSpd == 0)
+    {
+        hSpd = maxHSpd;
+    }
+    
+    paused = true;
+    alarm[9] = pauseTime
+    exit;
+}
+else
+{
+    //Right invisWall
+    var inst = collision_rectangle(hbR,hbT,hbR+hSpd,hbB,obj_invisWall,false,true);
+    if (inst!= noone)
+    {
+        hSpd = (inst.x - (sprite_width+x));
+        if (hSpd == 0)
+        {
+            hSpd = 0-maxHSpd;
+        }
+        
+        paused = true;
+        alarm[9] = pauseTime
+        exit;
+    }
 }
 
 //Left
@@ -280,6 +319,7 @@ if (inst!=noone)
     
     paused = true;
     alarm[9] = pauseTime
+    exit;
 }
 else
 {
@@ -295,6 +335,7 @@ else
         
         paused = true;
         alarm[9] = pauseTime
+        exit;
     }
 }
 
@@ -313,9 +354,6 @@ else //Down
         vSpd = (hbB+1) - inst.y;
     }
 }
-
-if(paused)
-    exit;
 
 x+=hSpd;
 y-=vSpd;

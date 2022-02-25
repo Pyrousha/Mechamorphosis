@@ -31,7 +31,33 @@ mins = 0;
 seconds = 0;
 frames = 0;
 
-beInvis = false;
+beInvis = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(room == rm_ending)
+{
+    beInvis = true;
+}
 </string>
           </argument>
         </arguments>
@@ -54,11 +80,15 @@ beInvis = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>beInvis = false;
-
-if (room == rm_menu)&amp;&amp;(visible)
+            <string>if (room == rm_menu)
 {
     m = global.mins;
+    
+    if(m &gt;= 50)
+        beInvis = true;
+    else
+        beInvis = false;
+    
     mstr = string(m);
     if (m &lt; 10)
     {
@@ -71,6 +101,7 @@ if (room == rm_menu)&amp;&amp;(visible)
         sstr = "0"+string(s);
     }
     f = global.frames;
+    frames = f
     fstr = string(f);
     if (f &lt; 10)
     {
@@ -95,6 +126,7 @@ if (room == rm_ending)
     {
         obj_persist.text = "New best time!";
         obj_persist.alarm[0] = 120;
+        alarm[0] = 120;
         
         global.bestTime = time;
         global.mins = mins;
@@ -125,8 +157,10 @@ if (room == rm_ending)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if ((beInvis) || (room == rm_credits))
+            <string>if (room == rm_credits)
+{
     exit;
+}
 
 if (counting)
 {
@@ -143,13 +177,28 @@ if (counting)
     }
 }
 
-if (frames &lt; 10)
+if(beInvis == true)
 {
-    framesStr = ("0"+string(frames));
+    exit;
+}
+
+ms = round((frames * 1000)/60)
+msStr = "";
+
+if(ms &lt; 10)
+{
+    msStr = "00"+string(ms);
 }
 else
 {
-    framesStr = string(frames);
+    if(ms &lt; 100) // Less that 100, bigger than 10
+    {
+        msStr = "0"+string(ms);
+    }
+    else  //Bigger than 100
+    {
+        msStr = string(ms);   
+    }
 }
 
 if (seconds &lt; 10)
@@ -172,21 +221,27 @@ y = view_yview + view_hview - 1;
 
 if(room != rm_menu)
 {
-    draw_text(x, y, string(mins)+":"+secondsStr+":"+framesStr);
+    if(beInvis == true)
+    {
+        show_debug_message(string(mins)+":"+secondsStr+":"+msStr);
+    }
+    else
+    {
+        draw_text(x, y, string(mins)+":"+secondsStr+":"+msStr);
+    }
 }
 else
 {
     //Room is menu
-    
-    if(global.mins == 50)
+    if(global.mins &gt;= 50)
     {
         //Game not beaten yet
-        draw_text(x, y, "");
+        //draw_text(x, y, "a");
     }
     else
     {
         //Game beaten, show best time on menu
-        draw_text(x, y, ("Best Time: " + mstr + ":"+ sstr+":"+fstr));
+        draw_text(x, y, ("Best Time: " + mstr + ":"+ sstr+":"+msStr));
     }
 }
 //depth *= 10;

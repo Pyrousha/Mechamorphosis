@@ -49,7 +49,6 @@
           <argument>
             <kind>1</kind>
             <string>fadeout(rm_intro,10);
-obj_speedrunTimer.visible = false;
 </string>
           </argument>
         </arguments>
