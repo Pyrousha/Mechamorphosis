@@ -845,7 +845,7 @@ if (!soundLoop)
         audio_stop_sound(global.levelMusic);
         global.levelMusic = audio_play_sound(snd_song2_loop,5,true);
         audio_sound_gain(global.levelMusic,global.musicVolume,0);
-        soundLoop = true;;
+        soundLoop = true;
     }
 }
 </string>

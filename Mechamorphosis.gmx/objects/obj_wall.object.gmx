@@ -32,10 +32,10 @@ if (room == rm_lv2)
     sprite_index = spr_tileset_city;
 }
 alarm[0] = 1;
-wallL = "false";
-wallR = "false";
-wallU = "false";
-wallD = "false";
+wallL = false;
+wallR = false;
+wallU = false;
+wallD = false;
 hImgWidth = sprite_width/2;
 hImgHeight = sprite_height/2;
 </string>
@@ -62,28 +62,28 @@ hImgHeight = sprite_height/2;
             <kind>1</kind>
             <string>if (collision_point(x-hImgWidth,y+hImgHeight,obj_wall,false,true))
 {
-    wallL = "true";
+    wallL = true;
 }
 if (collision_point(x + 3*hImgWidth,y+hImgHeight,obj_wall,false,true))
 {
-    wallR = "true";
+    wallR = true;
 }
 if (collision_point(x+hImgWidth,y-hImgHeight,obj_wall,false,true))
 {
-    wallU = "true";
+    wallU = true;
 }
 if (collision_point(x+hImgWidth,y + 3*hImgHeight,obj_wall,false,true))
 {
-    wallD = "true";
+    wallD = true;
 }
 
-if (wallU == "true")
+if (wallU == true)
 {
-    if (wallL == "true")
+    if (wallL == true)
     {
-        if (wallD == "true")
+        if (wallD == true)
         {
-            if (wallR == "true")
+            if (wallR == true)
             {
                 if (!collision_point(x-hImgWidth,y-hImgHeight,obj_wall,false,true)) //Top left
                 {
@@ -116,7 +116,7 @@ if (wallU == "true")
         }
         else //no wallD
         {
-            if (wallR == "true")
+            if (wallR == true)
             {
                 image_index = 13;
                 exit;
@@ -130,9 +130,9 @@ if (wallU == "true")
     }
     else //no wallL
     {
-        if (wallR == "true")
+        if (wallR == true)
         {
-            if (wallD == "true")
+            if (wallD == true)
             {
                 image_index = 6;
                 exit;
@@ -147,11 +147,11 @@ if (wallU == "true")
 }
 else //no wallU
 {
-    if (wallD == "true")
+    if (wallD == true)
     {
-        if (wallR == "true")
+        if (wallR == true)
         {
-            if (wallL == "true")
+            if (wallL == true)
             {
                 image_index = 1;
                 exit;

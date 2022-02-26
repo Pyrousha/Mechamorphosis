@@ -28,6 +28,11 @@
             <string>draw_set_font(fnt_1);
 global.blueColour = make_colour_rgb(38,27,252);
 text = "";
+
+escTimer = 0;
+escMaxTime = 60;
+
+global.fullDashButton = noone;
 </string>
           </argument>
         </arguments>
@@ -51,6 +56,44 @@ text = "";
           <argument>
             <kind>1</kind>
             <string>text = "";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(room == rm_menu)
+    fullDash = false;
+    
+if(room == rm_lv1) &amp;&amp; (fullDash)
+{
+    instance_create(0,640,obj_boostPowerUp);
+}
+
+escTimer = 0;
+
+canESC = false;
+
+if(room == rm_lv1 || room == rm_lv2)
+{
+    canESC = true;
+}
 </string>
           </argument>
         </arguments>
@@ -96,6 +139,25 @@ if (room == rm_menu)
     draw_set_font(fnt_12x10_BIG);
     draw_text_outlined(room_width/2,128,c_black,make_colour_rgb(160,160,160),"MECHAMORPHOSIS",6);
 }
+else
+{
+    if(room == rm_lv1 || room == rm_lv2)
+    {
+        if(escTimer &lt;= 0)
+            exit;
+    
+        escTimer--;
+
+        a = escTimer/escMaxTime;
+        
+        draw_set_halign(fa_left);
+        draw_set_valign(fa_top);
+        draw_set_font(fnt_12x10);
+        draw_set_alpha(a)
+        draw_text(view_xview+32, view_yview+32,"ESC?");
+        draw_set_alpha(1);
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -118,14 +180,32 @@ if (room == rm_menu)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (debug_mode)
+            <string>if (canESC == false)
+    exit;
+
+if(escTimer &gt; 0)
+{
+    //pressed esc in quick sucession, go to main menu
+    canESC = false;
+    fadeout(rm_menu,10);
+    obj_hero.soundLoop = true;
+    audio_stop_sound(snd_song2_intro);
+    audio_stop_sound(snd_song2_loop);
+}
+else
+{
+    //First time pressing esc, start timer
+    escTimer = escMaxTime;
+}
+
+/*if (debug_mode)
 {
     if(room == rm_lv1 || room == rm_lv2)
     {
         room = rm_lv1;
         audio_stop_sound(global.levelMusic);
     }
-}
+}*/
 
 </string>
           </argument>

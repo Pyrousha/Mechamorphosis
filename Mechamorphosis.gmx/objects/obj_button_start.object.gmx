@@ -48,7 +48,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>fadeout(rm_intro,10);
+            <string>obj_speedrunTimer.beInvis = true;
+obj_persist.fullDash = obj_button_toggleFullDash.enabled;
+fadeout(rm_intro,10);
 </string>
           </argument>
         </arguments>

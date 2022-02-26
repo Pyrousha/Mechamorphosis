@@ -82,13 +82,21 @@ beInvis = true;
             <kind>1</kind>
             <string>if (room == rm_menu)
 {
+    counting = false;
+
     m = global.mins;
     
     if(m &gt;= 50)
+    {
         beInvis = true;
+    }
     else
+    {
+        global.gameBeaten = true;
+        obj_button_toggleFullDash.alarm[0] = 1;
         beInvis = false;
-    
+    }
+        
     mstr = string(m);
     if (m &lt; 10)
     {

@@ -52,7 +52,7 @@ if (room != rm_menu)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room != rm_menu)
+            <string>if (room == rm_lv1 || room == rm_lv2)
 {
     obj_dashDir.visible = !obj_dashDir.visible;
 }

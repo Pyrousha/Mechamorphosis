@@ -49,6 +49,7 @@
       <sprite>sprites\spr_button_respawn</sprite>
       <sprite>sprites\spr_button_mute</sprite>
       <sprite>sprites\spr_button_mouseDash</sprite>
+      <sprite>sprites\spr_button_toggleFullDash</sprite>
       <sprite>sprites\spr_button_start</sprite>
       <sprite>sprites\spr_button_speedrun</sprite>
       <sprite>sprites\spr_button_control</sprite>
@@ -240,6 +241,7 @@
         <object>objects\obj_button_save</object>
         <object>objects\obj_button_credits</object>
         <object>objects\obj_button_keyboardToggle</object>
+        <object>objects\obj_button_toggleFullDash</object>
       </objects>
       <object>objects\obj_background</object>
     </objects>

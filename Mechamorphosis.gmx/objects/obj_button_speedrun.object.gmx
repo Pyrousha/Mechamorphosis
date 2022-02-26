@@ -51,6 +51,7 @@ textColour = make_color_rgb(0,200,200);
           <argument>
             <kind>1</kind>
             <string>obj_speedrunTimer.beInvis = false;
+obj_persist.fullDash = obj_button_toggleFullDash.enabled;
 fadeout(rm_lv1,10);
 </string>
           </argument>
